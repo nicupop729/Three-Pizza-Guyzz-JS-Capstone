@@ -1,7 +1,7 @@
 const displayPizza = document.querySelector('.display-pizza');
+const url = 'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=c9510895-3e98-4f84-a4ff-c56d29bdf5e0';
 
 const getPizza = async () => {
-  const url = 'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=c9510895-3e98-4f84-a4ff-c56d29bdf5e0';
   const pizza = await fetch(url);
   const pizzaData = await pizza.json();
   const data = pizzaData.data.recipes;
