@@ -12,7 +12,7 @@ body {
   width: 100vw;
   height: 100px;
   background-color: rgb(50, 50, 50);
-  color: bisque;
+  color: #e67e22;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
