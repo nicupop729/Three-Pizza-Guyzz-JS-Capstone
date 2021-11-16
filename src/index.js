@@ -1,4 +1,4 @@
 import './style.css';
-import getPizza from './home.js';
+import getPizza from './hitApi.js';
 
 getPizza();
