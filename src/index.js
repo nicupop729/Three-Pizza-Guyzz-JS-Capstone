@@ -1,4 +1,4 @@
 import './style.css';
-import getPizza from './home';
+import getPizza from './home.js';
 
 getPizza();
