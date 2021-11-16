@@ -17,3 +17,36 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.display-pizza {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.pizza-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 5px;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.pizza-container img {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50%;
+}
+
+.pizza-container button {
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 3px;
+}
