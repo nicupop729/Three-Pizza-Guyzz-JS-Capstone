@@ -1,3 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: bisque;
+}
+
+.footer {
+  width: 100vw;
+  height: 100px;
+  background-color: rgb(50, 50, 50);
+  color: #e67e22;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
