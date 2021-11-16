@@ -34,12 +34,9 @@ const getPizza = async ()=>{
 
 
        displayPizza.appendChild(divContainer);
-        console.log(dat)
-        
     });
     
 }
 
-getPizza();
 
 export default getPizza;
