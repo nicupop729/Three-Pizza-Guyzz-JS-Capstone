@@ -9,6 +9,7 @@ const getPizza = async () => {
     const divContainer = document.createElement('div');
     divContainer.className = 'pizza-container';
     const image = document.createElement('img');
+    image.alt = 'pizza-image';
     image.src = dat.image_url;
 
     const namePub = document.createElement('span');
