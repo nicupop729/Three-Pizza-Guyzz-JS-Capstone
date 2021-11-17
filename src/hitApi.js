@@ -1,4 +1,6 @@
 import showPizza from './home.js';
+import counter from './counter.js';
+import itemCounter from './counter.js';
 
 
 const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
@@ -10,6 +12,7 @@ const getPizza = async () => {
   const pizzaData = await pizza.json();
   const data = pizzaData.data.recipes;
   showPizza(data);
+  itemCounter(data);
 };
 
 export const getLikes = async () => {

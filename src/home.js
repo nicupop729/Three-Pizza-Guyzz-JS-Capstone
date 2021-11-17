@@ -1,7 +1,6 @@
 import { getLikes } from './hitApi.js';
 
 const displayPizza = document.querySelector('.display-pizza');
-
 const showPizza = async (value) => {
   const likedData = [];
   await getLikes().then((theLike) =>
@@ -51,7 +50,6 @@ const showPizza = async (value) => {
     divContainer.appendChild(image);
     divContainer.appendChild(likes);
     divContainer.appendChild(namePub);
-
 
     for (let i = 0; i < likedData.length; i += 1) {
       const namePizz = document.createElement('span');
