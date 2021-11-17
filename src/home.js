@@ -1,4 +1,6 @@
 import { getLikes } from './hitApi.js';
+// eslint-disable-next-line import/no-cycle
+import displayPopUp from './display-comments.js';
 
 const apiEndPoint =
   'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
@@ -12,6 +14,7 @@ const showPizza = async (value) => {
     })
   );
 
+const showPizza = (value) => {
   value.forEach((dat) => {
     const counter = document.querySelector('.item-counter');
     counter.innerHTML = `Total Pizza: ${value.length}`;
@@ -30,8 +33,12 @@ const showPizza = async (value) => {
 
     const commentBtn = document.createElement('button');
     commentBtn.innerHTML = 'Comment';
+    commentBtn.classList.add('comment-btn');
+    commentBtn.id = dat.id;
 
     const reservationBtn = document.createElement('button');
+    reservationBtn.id = dat.id;
+    reservationBtn.classList.add('reservation-btns');
     reservationBtn.innerHTML = 'Reservation';
 
     likes.addEventListener('click', async () => {
@@ -61,9 +68,12 @@ const showPizza = async (value) => {
 
     divContainer.appendChild(commentBtn);
     divContainer.appendChild(reservationBtn);
-
     displayPizza.appendChild(divContainer);
   });
+
+  const commentBtns = [...document.querySelectorAll('.comment-btn')];
+
+  displayPopUp(commentBtns);
 };
 
 export default showPizza;

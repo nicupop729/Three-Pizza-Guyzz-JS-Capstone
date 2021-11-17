@@ -6,10 +6,14 @@
 
 body {
   background-color: bisque;
+}
+
+.wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  filter: none;
 }
 
 .main-header {
@@ -36,7 +40,7 @@ body {
 }
 
 .footer {
-  width: 100vw;
+  width: 100%;
   height: 100px;
   background-color: rgb(50, 50, 50);
   color: #e67e22;
@@ -49,6 +53,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  margin: 50px;
 }
 
 .pizza-container {
@@ -82,4 +87,111 @@ body {
   font-size: 28px;
   vertical-align: top;
   cursor: pointer;
+}
+.pop-up-comment-div {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+}
+
+.inner-pop-up-comment-div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 100%;
+  height: auto;
+  margin: 0 auto auto auto;
+  padding-bottom: 70px;
+  background-color: bisque;
+  box-shadow: -5px 10px #bb8000;
+  border-radius: 5px;
+}
+
+.recipe-title {
+  margin: 50px;
+}
+
+.pop-up-img-div {
+  grid-area: right-top;
+}
+
+.pop-up-img {
+  width: auto;
+  height: 400px;
+}
+
+.servings {
+  grid-area: right-second;
+  margin-top: 15px;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.recipe {
+  grid-area: right-third;
+  margin-top: 15px;
+  font-size: 30px;
+  padding-left: 5px;
+}
+
+.inspiration {
+  padding-left: 5px;
+}
+
+.ingredients {
+  grid-area: left-top;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.ingredients-list {
+  grid-area: left-main;
+}
+
+.ingredient {
+  margin-bottom: 7px;
+}
+
+.grid {
+  display: grid;
+  justify-content: space-between;
+  grid-template-areas:
+    'right-top right-top left-top left-top'
+    'right-top right-top left-main left-main'
+    'right-second right-second left-main left-main'
+    'right-third right-third left-main left-main';
+  column-gap: 50px;
+}
+
+.link:link,
+.link:visited {
+  color: #e67e22;
+}
+
+.close-modul {
+  display: inline-block;
+  position: absolute;
+  top: 6%;
+  right: 15%;
+  font-size: 20px;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  padding: 5px;
+  color: #67798e;
+  background-color: #ddd;
+  border: 2px solid #ddd;
+  border-radius: 5px;
 }
