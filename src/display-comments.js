@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { getRecipe } from "./hitApi";
+import { getRecipe } from './hitApi';
 
 const domManip = (object) => {
   const htmlText = `
@@ -36,30 +36,30 @@ const domManip = (object) => {
   </div>
     `;
 
-  document.body.insertAdjacentHTML("afterbegin", htmlText);
+  document.body.insertAdjacentHTML('afterbegin', htmlText);
 };
 
 const displayIngredients = (ingredients, container) => {
   ingredients.forEach((ingr) => {
     const textHTML = `
-    <li class="ingredient">${ingr.quantity === null ? "" : ingr.quantity} ${
-      ingr.unit === "tsp" ? "teaspoons" : ingr.unit
-    } ${ingr.unit === "tsp" || ingr.unit === "cup" ? "of" : ""} ${
-      ingr.description
-    }</li>`;
-    container.insertAdjacentHTML("beforeend", textHTML);
+    <li class="ingredient">${ingr.quantity === null ? '' : ingr.quantity} ${
+  ingr.unit === 'tsp' ? 'teaspoons' : ingr.unit
+} ${ingr.unit === 'tsp' || ingr.unit === 'cup' ? 'of' : ''} ${
+  ingr.description
+}</li>`;
+    container.insertAdjacentHTML('beforeend', textHTML);
   });
 };
 
 const closePopUp = (x, popUp) => {
-  x.addEventListener("click", () => {
-    popUp.style.display = "none";
+  x.addEventListener('click', () => {
+    popUp.style.display = 'none';
   });
 };
 
 const getComm = async (pizzaId) => {
   const dataComm = await fetch(
-    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/comments?item_id=${pizzaId}`
+    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/comments?item_id=${pizzaId}`,
   );
   const comm = await dataComm.json();
   return comm;
@@ -67,16 +67,16 @@ const getComm = async (pizzaId) => {
 
 const sendNewComm = (pizzaId, name, comment) => {
   fetch(
-    "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/comments",
+    'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/comments',
     {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         item_id: pizzaId,
         username: name,
         comment,
       }),
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-    }
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    },
   );
 };
 
@@ -84,7 +84,7 @@ const getCommArray = async (pizzaId, container) => {
   const commArr = await getComm(pizzaId);
   commArr.forEach((comm) => {
     const textHTML = `<li class="comment">${comm.creation_date} <span class="user-name">${comm.username}</span>: ${comm.comment}</li>`;
-    container.insertAdjacentHTML("afterbegin", textHTML);
+    container.insertAdjacentHTML('afterbegin', textHTML);
   });
 };
 
@@ -94,27 +94,27 @@ const buildPopUp = async (e) => {
 
   domManip(apiResult);
 
-  const ingredientsList = document.querySelector(".ingredients-list");
-  const closeIcon = document.querySelector(".close-modul");
-  const popUpDiv = document.querySelector(".pop-up-comment-div");
-  const form = document.querySelector(".leave-comm");
-  const inputName = document.querySelector(".input-name");
-  const inputMess = document.querySelector(".input-mess");
-  const commentsList = document.querySelector(".comments-list");
+  const ingredientsList = document.querySelector('.ingredients-list');
+  const closeIcon = document.querySelector('.close-modul');
+  const popUpDiv = document.querySelector('.pop-up-comment-div');
+  const form = document.querySelector('.leave-comm');
+  const inputName = document.querySelector('.input-name');
+  const inputMess = document.querySelector('.input-mess');
+  const commentsList = document.querySelector('.comments-list');
 
-  popUpDiv.style.display = "block";
+  popUpDiv.style.display = 'block';
 
   displayIngredients(apiResult.ingredients, ingredientsList);
 
   getCommArray(pizzaId, commentsList);
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     sendNewComm(pizzaId, inputName.value, inputMess.value);
-    inputName.value = "";
-    inputMess.value = "";
+    inputName.value = '';
+    inputMess.value = '';
     setTimeout(() => {
-      commentsList.innerHTML = "";
+      commentsList.innerHTML = '';
       getCommArray(pizzaId, commentsList);
     }, 2000);
   });
@@ -124,7 +124,7 @@ const buildPopUp = async (e) => {
 
 const displayPopUp = (btns) => {
   btns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener('click', (e) => {
       buildPopUp(e);
       console.log(e);
     });
