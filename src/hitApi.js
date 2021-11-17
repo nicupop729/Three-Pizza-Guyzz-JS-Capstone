@@ -3,10 +3,13 @@ import showPizza from './home.js';
 import counter from './counter.js';
 import itemCounter from './counter.js';
 
+<<<<<<< HEAD
 const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
 const url =
   'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=';
   const InvolmentAppKey = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/'
+=======
+>>>>>>> c87491cb096773f84c5762c391c46bd2ad162abf
 const apiKey = 'c9510895-3e98-4f84-a4ff-c56d29bdf5e0';
 const url = 'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=';
 
