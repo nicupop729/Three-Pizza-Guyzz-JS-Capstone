@@ -8,10 +8,11 @@ const InvolmentAppKey =
   "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/";
 
 const receipeUrl = "https://forkify-api.herokuapp.com/api/v2/recipes/";
+
 export const getPizza = async () => {
   const pizza = await fetch(`${url}${apiKey}`);
   const pizzaData = await pizza.json();
-  const data = pizzaData.data.recipes;
+  const data = pizzaData.data.recipes.slice(1, pizzaData.lenght);
   showPizza(data);
   itemCounter(data);
 };

@@ -4,7 +4,6 @@ import "./style.css";
 import "./assets/stylesheets/reservation.css";
 import { getPizza, getLikes } from "./hitApi.js";
 
-getPizza();
 getLikes();
 
 const body = document.querySelector("body");
@@ -22,5 +21,4 @@ const display = async () => {
     });
   });
 };
-display();
 display();
