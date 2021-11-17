@@ -94,6 +94,6 @@ const populateRes = (recipe, image, title) => {
   resContainer.appendChild(addReserve);
 
   return resContainer;
-}
+};
 
-export {getResipe, populateRes}
+export {getResipe, populateRes};
