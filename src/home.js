@@ -3,7 +3,21 @@ import { getLikes } from './hitApi.js';
 const displayPizza = document.querySelector('.display-pizza');
 
 const showPizza = async (value) => {
+    getLikes();
+    const u = getLikes();
+    u.then((params) => {
+        params.forEach(par =>{
+            // console.log(u)
+            
+        });
+      })
+
+      console.log(u)
+
   value.forEach((dat) => {
+    console.log(value.length);
+    const counter = document.querySelector('.item-counter');
+    counter.innerHTML = `Total Pizza: ${value.length}`;
     const divContainer = document.createElement('div');
     divContainer.className = 'pizza-container';
     const image = document.createElement('img');
@@ -17,10 +31,11 @@ const showPizza = async (value) => {
     const namePub = document.createElement('span');
     namePub.innerHTML = dat.publisher;
 
-
     const namePizz = document.createElement('span');
-    namePizz.className = 'likes-span';
     namePizz.innerHTML = '5 likes';
+    
+
+    namePizz.className = 'likes-span';
 
     const commentBtn = document.createElement('button');
     commentBtn.innerHTML = 'Comment';
@@ -50,8 +65,13 @@ const showPizza = async (value) => {
     divContainer.appendChild(commentBtn);
     divContainer.appendChild(reservationBtn);
 
+
     displayPizza.appendChild(divContainer);
   });
+
+  
 };
+
+
 
 export default showPizza;

@@ -22,5 +22,5 @@ export const getLikes = async () => {
   });
 };
 
-getLikes();
+// getLikes();
 export default getPizza;
