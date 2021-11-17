@@ -1,4 +1,5 @@
 import showPizza from './home.js';
+import likeCounter from './showLikes.js';
 
 const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
 const url =

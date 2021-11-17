@@ -3,19 +3,7 @@ import { getLikes } from './hitApi.js';
 const displayPizza = document.querySelector('.display-pizza');
 
 const showPizza = async (value) => {
-    getLikes();
-    const u = getLikes();
-    u.then((params) => {
-        params.forEach(par =>{
-            // console.log(u)
-            
-        });
-      })
-
-      console.log(u)
-
   value.forEach((dat) => {
-    console.log(value.length);
     const counter = document.querySelector('.item-counter');
     counter.innerHTML = `Total Pizza: ${value.length}`;
     const divContainer = document.createElement('div');
