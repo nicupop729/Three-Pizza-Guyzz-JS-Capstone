@@ -9,7 +9,7 @@ const receipeUrl = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const getPizza = async () => {
   const pizza = await fetch(`${url}${apiKey}`);
   const pizzaData = await pizza.json();
-  const data = pizzaData.data.recipes;
+  const data = pizzaData.data.recipes.slice(1, pizzaData.lenght);
   showPizza(data);
 };
 
