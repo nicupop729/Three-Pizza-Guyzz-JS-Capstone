@@ -1,6 +1,7 @@
 import { getLikes } from './hitApi.js';
 
-const apiEndPoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes'
+const apiEndPoint =
+  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
 
 const displayPizza = document.querySelector('.display-pizza');
 const showPizza = async (value) => {
@@ -34,18 +35,15 @@ const showPizza = async (value) => {
     reservationBtn.innerHTML = 'Reservation';
 
     likes.addEventListener('click', async () => {
-      await fetch(apiEndPoint
-        ,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            item_id: dat.id,
-          }),
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-          },
-        }
-      );
+      await fetch(apiEndPoint, {
+        method: 'POST',
+        body: JSON.stringify({
+          item_id: dat.id,
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+      });
       window.location.reload();
     });
 
