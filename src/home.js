@@ -1,11 +1,9 @@
 import { getLikes } from './hitApi.js';
 
-const displayPizza = document.querySelector('.display-pizza');
 
+const displayPizza = document.querySelector('.display-pizza');
 const showPizza = async (value) => {
   value.forEach((dat) => {
-    const counter = document.querySelector('.item-counter');
-    counter.innerHTML = `Total Pizza: (${value.length})`;
     const divContainer = document.createElement('div');
     divContainer.className = 'pizza-container';
     const image = document.createElement('img');
