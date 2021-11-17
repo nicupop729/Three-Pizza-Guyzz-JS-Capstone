@@ -6,6 +6,33 @@
 
 body {
   background-color: bisque;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-header {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  justify-items: center;
+  padding: 20px 50px;
+  background: rgb(50, 50, 50);
+}
+
+.main-header img {
+  height: 100px;
+}
+
+.main-header > * {
+  color: #e67e22;
+}
+
+.main-header .res-name {
+  justify-self: start;
 }
 
 .footer {
