@@ -1,5 +1,5 @@
 import showPizza from './home.js';
-import likeCounter from './showLikes.js';
+
 
 const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
 const url =
@@ -17,11 +17,8 @@ export const getLikes = async () => {
     'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes'
   );
   const likesData = await likes.json();
-  likesData.forEach((element) => {
-    const upperLike = element;
-    return upperLike;
-  });
+  return likesData
 };
 
-// getLikes();
+getLikes();
 export default getPizza;

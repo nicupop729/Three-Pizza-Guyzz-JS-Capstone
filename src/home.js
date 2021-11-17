@@ -3,6 +3,13 @@ import { getLikes } from './hitApi.js';
 const displayPizza = document.querySelector('.display-pizza');
 
 const showPizza = async (value) => {
+  const likedData = [];
+  await getLikes().then((theLike) =>
+    theLike.forEach((datLike) => {
+      likedData.push(datLike);
+    })
+  );
+
   value.forEach((dat) => {
     const counter = document.querySelector('.item-counter');
     counter.innerHTML = `Total Pizza: ${value.length}`;
@@ -18,12 +25,6 @@ const showPizza = async (value) => {
 
     const namePub = document.createElement('span');
     namePub.innerHTML = dat.publisher;
-
-    const namePizz = document.createElement('span');
-    namePizz.innerHTML = '5 likes';
-    
-
-    namePizz.className = 'likes-span';
 
     const commentBtn = document.createElement('button');
     commentBtn.innerHTML = 'Comment';
@@ -44,22 +45,27 @@ const showPizza = async (value) => {
           },
         }
       );
+      window.location.reload();
     });
 
     divContainer.appendChild(image);
     divContainer.appendChild(likes);
-    divContainer.appendChild(namePizz);
     divContainer.appendChild(namePub);
+
+
+    for (let i = 0; i < likedData.length; i += 1) {
+      const namePizz = document.createElement('span');
+      if (likedData[i].item_id === dat.id) {
+        namePizz.innerHTML = `${likedData[i].likes} Likes`;
+        divContainer.insertBefore(namePizz, namePub);
+      }
+    }
+
     divContainer.appendChild(commentBtn);
     divContainer.appendChild(reservationBtn);
 
-
     displayPizza.appendChild(divContainer);
   });
-
-  
 };
-
-
 
 export default showPizza;
