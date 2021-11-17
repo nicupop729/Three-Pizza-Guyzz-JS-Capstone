@@ -6,10 +6,14 @@
 
 body {
   background-color: bisque;
+}
+
+.wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  filter: none;
 }
 
 .main-header {
