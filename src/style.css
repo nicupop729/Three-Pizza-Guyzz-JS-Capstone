@@ -77,3 +77,9 @@ body {
   padding: 10px;
   border-radius: 3px;
 }
+
+.like-me {
+  font-size: 28px;
+  vertical-align: top;
+  cursor: pointer;
+}
