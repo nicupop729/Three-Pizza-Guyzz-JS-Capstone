@@ -116,8 +116,8 @@ body {
 }
 
 .pop-up-img {
-  max-height: 400px;
-  max-width: 500px;
+  width: auto;
+  height: 400px;
 }
 
 .servings {
