@@ -13,7 +13,9 @@ const getResipe = async (id) => {
 };
 
 const populateRes = (recipe, image, title) => {
-  const resContainer = document.createElement('dev');
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('res-wrapper');
+  const resContainer = document.createElement('div');
   resContainer.classList.add('res-container');
   const header = document.createElement('header');
   header.classList.add('reservation-header');
@@ -25,14 +27,15 @@ const populateRes = (recipe, image, title) => {
   });
 
   header.appendChild(closeBtn);
-  const imageCont = document.createElement('dev');
+  const imageCont = document.createElement('div');
   imageCont.classList.add('res-image-conatainer');
   const img = document.createElement('img');
   img.src = image;
   img.alt = 'pizza';
+  img.classList.add('pizza-image')
   imageCont.appendChild(img);
 
-  const details = document.createElement('dev');
+  const details = document.createElement('div');
   details.classList.add('res-details');
   const itmeTitle = document.createElement('h2');
   itmeTitle.textContent = title;
@@ -40,17 +43,19 @@ const populateRes = (recipe, image, title) => {
 
   recipe.forEach((obj) => {
     const list = document.createElement('li');
-    list.innerHTML = `${obj.quantity} ${obj.unit} ${obj.description};`;
+    list.innerHTML = `${obj.quantity === null ? ' ' : obj.quantity} ${obj.unit} ${obj.unit === 'tsp' || obj.unit === 'cup' ? 'of' : " "} ${obj.description};`;
     recipeCont.appendChild(list);
   });
 
   details.appendChild(itmeTitle);
   details.appendChild(recipeCont);
 
-  const reservations = document.createElement('dev');
+  const reservations = document.createElement('div');
   reservations.classList.add('reservations');
   const reserveRecord = document.createElement('div');
-  reserveRecord.classList.add('reservation-records');
+  reserveRecord.style.display = 'flex';
+  const resTitle = document.createElement('h2');
+  resTitle.textContent = 'Current Reservations';
   const date = document.createElement('p');
   date.classList.add('res-dates');
   date.textContent = '21/11/2021 - 10/12/2021';
@@ -58,10 +63,11 @@ const populateRes = (recipe, image, title) => {
   userName.classList.add('userName');
   userName.textContent = 'Hope';
 
+
   reserveRecord.appendChild(date);
   reserveRecord.appendChild(userName);
+  reservations.appendChild(resTitle);
   reservations.appendChild(reserveRecord);
-  details.appendChild(reservations);
 
   const addReserve = document.createElement('form');
   addReserve.id = 'add-reserve-form';
@@ -91,9 +97,11 @@ const populateRes = (recipe, image, title) => {
   resContainer.appendChild(header);
   resContainer.appendChild(imageCont);
   resContainer.appendChild(details);
+  resContainer.appendChild(reservations);
   resContainer.appendChild(addReserve);
+  wrapper.appendChild(resContainer);
 
-  return resContainer;
+  return wrapper;
 };
 
 export { getResipe, populateRes };
