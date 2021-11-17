@@ -16,6 +16,7 @@ const buildPopUp = async (e) => {
           </div>
           <p class="servings">Servings: ${object.servings}</p>
           <p class="recipe">See full recipe <a class="link" href="${object.source_url}" target="_blank" rel="noopener">here</a></p>
+          <p class="inspiration">Inspired by: ${object.publisher}</p>          
           <p class="ingredients">Ingredients</p>
           <ul class="ingredients-list">
           </ul>
