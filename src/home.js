@@ -20,6 +20,8 @@ const showPizza = (value) => {
     commentBtn.innerHTML = 'Comment';
 
     const reservationBtn = document.createElement('button');
+    reservationBtn.id = dat.id;
+    reservationBtn.classList.add('reservation-btns')
     reservationBtn.innerHTML = 'Reservation';
 
     divContainer.appendChild(image);
