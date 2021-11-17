@@ -6,6 +6,7 @@ const getResipe = async (id) => {
   const cloud = await response.json();
   const recipe = cloud.data.recipe.ingredients;
   const image = cloud.data.recipe.image_url;
+  // eslint-disable-next-line import/no-cycle
   const title = cloud.data.recipe.title;
 
   return { recipe, image, title };
