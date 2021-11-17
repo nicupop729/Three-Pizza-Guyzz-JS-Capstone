@@ -1,16 +1,14 @@
-import showPizza from './home.js';
-import counter from './counter.js';
-import itemCounter from './counter.js';
+import showPizza from "./home.js";
+import itemCounter from "./counter.js";
 
-
-const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
+const apiKey = "846893fa-87f6-438c-b699-78f4d8b5b5a0";
 const url =
-  'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=';
-  const InvolmentAppKey = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/'
+  "https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=";
+const InvolmentAppKey =
+  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/";
 
-
-const receipeUrl = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
-const getPizza = async () => {
+const receipeUrl = "https://forkify-api.herokuapp.com/api/v2/recipes/";
+export const getPizza = async () => {
   const pizza = await fetch(`${url}${apiKey}`);
   const pizzaData = await pizza.json();
   const data = pizzaData.data.recipes;
@@ -19,11 +17,10 @@ const getPizza = async () => {
 };
 
 export const getLikes = async () => {
-  const likes = await fetch(
-    `${InvolmentAppKey}likes`
-  );
+  const likes = await fetch(`${InvolmentAppKey}likes`);
   const likesData = await likes.json();
-  return likesData
+  return likesData;
+};
 
 export const getRecipe = async (id) => {
   const pizza = await fetch(`${receipeUrl}${id}?key=${apiKey}`);
@@ -49,4 +46,3 @@ export const getRecipe = async (id) => {
 };
 
 getLikes();
-export default getPizza;
