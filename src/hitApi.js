@@ -2,7 +2,6 @@ import showPizza from './home.js';
 import counter from './counter.js';
 import itemCounter from './counter.js';
 
-
 const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
 const url =
   'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=';
