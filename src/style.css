@@ -83,11 +83,13 @@ body {
   border-radius: 3px;
 }
 
+
 .like-me {
   font-size: 28px;
   vertical-align: top;
   cursor: pointer;
 }
+
 .pop-up-comment-div {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -195,3 +197,4 @@ body {
   border: 2px solid #ddd;
   border-radius: 5px;
 }
+
