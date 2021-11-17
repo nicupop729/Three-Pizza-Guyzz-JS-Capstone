@@ -8,7 +8,7 @@ const getResipe = async (id) => {
   const image = cloud.data.recipe.image_url;
   const title = cloud.data.recipe.title;
 
-  return {recipe, image, title};
+  return { recipe, image, title };
 };
 
 const populateRes = (recipe, image, title) => {
@@ -21,7 +21,7 @@ const populateRes = (recipe, image, title) => {
   closeBtn.id = 'reservation-close-btn';
   closeBtn.addEventListener('click', () => {
     resContainer.style.display = 'none';
-  })
+  });
 
   header.appendChild(closeBtn);
   const imageCont = document.createElement('dev');
@@ -31,14 +31,13 @@ const populateRes = (recipe, image, title) => {
   img.alt = 'pizza';
   imageCont.appendChild(img);
 
-
   const details = document.createElement('dev');
   details.classList.add('res-details');
   const itmeTitle = document.createElement('h2');
   itmeTitle.textContent = title;
   const recipeCont = document.createElement('ul');
 
-  recipe.forEach(obj => {
+  recipe.forEach((obj) => {
     const list = document.createElement('li');
     list.innerHTML = `${obj.quantity} ${obj.unit} ${obj.description};`;
     recipeCont.appendChild(list);
@@ -66,7 +65,7 @@ const populateRes = (recipe, image, title) => {
   const addReserve = document.createElement('form');
   addReserve.id = 'add-reserve-form';
   const formTitle = document.createElement('h2');
-  formTitle.textContent = 'Add a reservation'
+  formTitle.textContent = 'Add a reservation';
   const inputName = document.createElement('input');
   inputName.type = 'text';
   inputName.placeholder = 'Enter Your Name';
@@ -85,7 +84,7 @@ const populateRes = (recipe, image, title) => {
   addReserve.appendChild(formTitle);
   addReserve.appendChild(inputName);
   addReserve.appendChild(inputStartDate);
-  addReserve.appendChild(inputEndDate)
+  addReserve.appendChild(inputEndDate);
   addReserve.appendChild(submit);
 
   resContainer.appendChild(header);
@@ -96,4 +95,4 @@ const populateRes = (recipe, image, title) => {
   return resContainer;
 };
 
-export {getResipe, populateRes};
+export { getResipe, populateRes };

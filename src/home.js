@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import displayPopUp from './display-comments';
+import displayPopUp from './display-comments.js';
 
 const displayPizza = document.querySelector('.display-pizza');
 
@@ -24,7 +24,7 @@ const showPizza = (value) => {
 
     const reservationBtn = document.createElement('button');
     reservationBtn.id = dat.id;
-    reservationBtn.classList.add('reservation-btns')
+    reservationBtn.classList.add('reservation-btns');
     reservationBtn.innerHTML = 'Reservation';
 
     divContainer.appendChild(image);
