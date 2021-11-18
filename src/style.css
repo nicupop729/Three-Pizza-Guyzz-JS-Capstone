@@ -257,8 +257,8 @@ body {
   position: fixed;
   top: 10%;
   bottom: 10%;
-  left: 20%;
-  right: 20%;
+  left: 10%;
+  right: 10%;
   overflow-y: scroll;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -314,12 +314,28 @@ body {
   align-items: center;
 }
 
+.reserve-header {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .resrvation-record {
   display: flex;
   flex-direction: column;
   background: white;
   border-radius: 5px;
   border: 2px solid white;
+  height: 300px;
+  width: 500px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.resrvation-record ::-webkit-scrollbar {
+  display: none;
 }
 
 .resrvation-record > * {
@@ -348,6 +364,24 @@ body {
   width: 200px;
   background-color: #e67e22;
   color: white;
+}
+
+.add-reserve-form .res-confirmation-msg {
+  position: relative;
+  left: 110%;
+  bottom: 150%;
+  font-size: 12px;
+  border: 2px solid #05386b;
+  width: 200px;
+  background: #5cdb9580;
+  color: #05386b;
+  font-weight: 800;
+  display: none;
+  transition: all 5s;
+}
+
+.add-reserve-form .open {
+  display: block;
 }
 
 .resrvation-record > *:nth-child(odd) {
