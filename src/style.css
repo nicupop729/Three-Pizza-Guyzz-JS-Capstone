@@ -68,6 +68,7 @@ body {
   margin-right: 20px;
   border-radius: 5px;
   background: rgb(75, 75, 75);
+  text-align: center;
 }
 
 .pizza-container:hover {
@@ -218,6 +219,11 @@ body {
   flex-direction: column;
   gap: 15px;
   width: 500px;
+}
+
+.item-counter {
+  margin-left: 5%;
+  margin-top: 1%;
 }
 
 .input-name,
