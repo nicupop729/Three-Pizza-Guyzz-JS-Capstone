@@ -58,6 +58,7 @@ body {
   margin-top: 15px;
   margin-left: 20px;
   margin-right: 20px;
+  text-align: center;
 }
 
 .pizza-container img {
@@ -193,6 +194,10 @@ body {
   width: 500px;
 }
 
+.item-counter {
+  margin-left: 5%;
+  margin-top: 1%;
+}
 .input-name,
 .input-mess {
   padding-left: 10px;
