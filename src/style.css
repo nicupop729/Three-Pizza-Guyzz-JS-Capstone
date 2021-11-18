@@ -39,16 +39,6 @@ body {
   justify-self: start;
 }
 
-.footer {
-  width: 100%;
-  height: 100px;
-  background-color: rgb(50, 50, 50);
-  color: #e67e22;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 .display-pizza {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -261,4 +251,14 @@ body {
   background-color: #ddd;
   border: 2px solid #ddd;
   border-radius: 5px;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(50, 50, 50);
+  color: #e67e22;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
