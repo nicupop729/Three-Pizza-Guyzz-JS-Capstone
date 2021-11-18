@@ -27,7 +27,10 @@ const showPizza = async (value) => {
     likes.className = 'like-me';
 
     const namePub = document.createElement('span');
-    namePub.innerHTML = dat.publisher;
+    namePub.innerHTML = dat.title;
+
+    const namePizz = document.createElement('span');
+    namePizz.textContent = 'No Likes';
 
     const commentBtn = document.createElement('button');
     commentBtn.innerHTML = 'Comment';
@@ -57,12 +60,18 @@ const showPizza = async (value) => {
     divContainer.appendChild(namePub);
 
     for (let i = 0; i < likedData.length; i += 1) {
-      const namePizz = document.createElement('span');
       if (likedData[i].item_id === dat.id) {
-        namePizz.innerHTML = `${likedData[i].likes} Likes`;
-        divContainer.insertBefore(namePizz, namePub);
+        if (likedData[i].likes > 1) {
+          namePizz.textContent = `${likedData[i].likes} Likes`;
+        }
+        if (likedData[i].likes === 1) {
+          namePizz.textContent = `${likedData[i].likes} Like`;
+        }
+        
       }
     }
+
+    divContainer.insertBefore(namePizz, namePub);
 
     divContainer.appendChild(commentBtn);
     divContainer.appendChild(reservationBtn);

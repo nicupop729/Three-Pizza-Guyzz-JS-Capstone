@@ -1,7 +1,6 @@
 const itemCounter = async (value) => {
-  const counter = document.querySelector('.item-counter');
-  counter.innerHTML = await `Total Pizza: (${value.length})`;
-  return value.length;
+  const counter = value.length
+  return counter;
 };
 
 export default itemCounter;

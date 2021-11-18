@@ -15,7 +15,12 @@ const data = [
   },
 ];
 
-test('should output the total number of Item in the array..', () => {
-  itemCounter(data);
-  expect(data.length).toBe(3);
+test(, () => {
+  
+});
+
+describe('test add Items', () => {
+  test('should output the total number of Item in the array..', () => {
+    expect(itemCounter(data)).toBe(3);
+  });
 });
