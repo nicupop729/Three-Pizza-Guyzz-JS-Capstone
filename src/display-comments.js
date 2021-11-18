@@ -126,7 +126,6 @@ const displayPopUp = (btns) => {
   btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       buildPopUp(e);
-      console.log(e);
     });
   });
 };
