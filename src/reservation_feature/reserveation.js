@@ -13,6 +13,8 @@ const getResipe = async (id) => {
 };
 
 const populateRes = (recipe, image, title) => {
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('res-wrapper');
   const resContainer = document.createElement('div');
   resContainer.classList.add('res-container');
   const header = document.createElement('header');
@@ -22,6 +24,7 @@ const populateRes = (recipe, image, title) => {
   closeBtn.id = 'reservation-close-btn';
   closeBtn.addEventListener('click', () => {
     document.querySelector('body').removeChild(resContainer);
+    document.querySelector('body').removeChild(wrapper);
   });
 
   header.appendChild(closeBtn);
@@ -102,6 +105,7 @@ const populateRes = (recipe, image, title) => {
   resContainer.appendChild(details);
   resContainer.appendChild(reservations);
   resContainer.appendChild(addReserve);
+  document.querySelector('body').appendChild(wrapper);
 
   return resContainer;
 };
@@ -166,7 +170,7 @@ const creatPopUp = async (e) => {
 
   displayReservation(currentId, recorsCont);
   // eslint-disable-next-line no-unused-expressions
-  resrLeng ? counter.innerHTML = `( ${resrLeng} )` : counter.innerHTML = '( No reservations so far )';
+  resrLeng ? counter.innerHTML = `( ${resrLeng} )` : counter.innerHTML = '( No reservations at the moment )';
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();

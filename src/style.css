@@ -90,6 +90,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
   top: 0;
   left: 0;
   overflow-y: scroll;
@@ -120,6 +121,17 @@ body {
   width: auto;
   max-width: 500px;
   height: 400px;
+  border: 1px solid white;
+  box-shadow: 5px 10px #bb8000;
+  border-radius: 12px;
+}
+
+.flex-container > *:last-child {
+  padding: 20px;
+  background: #fff5de;
+  border-radius: 20px;
+  box-shadow: 5px 10px #bb8000;
+  color: #35280d;
 }
 
 .servings,
@@ -257,6 +269,17 @@ body {
   right: 5%;
 }
 
+.res-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(8px);
+}
+
 .res-container {
   position: fixed;
   top: 10%;
@@ -265,7 +288,7 @@ body {
   right: 10%;
   overflow-y: scroll;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto auto;
   grid-template-areas:
     'header header'
@@ -275,10 +298,11 @@ body {
   background-color: bisque;
   box-shadow: -5px 10px #bb8000;
   border-radius: 5px;
-  padding: 20px;
-  grid-gap: 10px;
+  padding: 20px 0 20px 20px;
+  grid-gap: 20px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  z-index: 3;
 }
 
 .res-container::-webkit-scrollbar,
@@ -304,11 +328,32 @@ body {
 }
 
 .pizza-image {
+  max-width: 500px;
+  width: auto;
   height: 400px;
+  border: 1px solid white;
+  box-shadow: 5px 10px #bb8000;
+  border-radius: 12px;
 }
 
 .res-details {
   grid-area: description;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 30px;
+  background: #fff5de;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 5px 10px #bb8000;
+  color: #35280d;
+}
+
+.res-details ul {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   padding: 0 20px;
 }
 
@@ -324,23 +369,13 @@ body {
   align-items: center;
   font-size: 20px;
   font-weight: 700;
+  padding: 50px;
 }
 
 .resrvation-record {
   display: flex;
   flex-direction: column;
-  background: white;
   border-radius: 5px;
-  border: 2px solid white;
-  height: 300px;
-  width: 500px;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.resrvation-record ::-webkit-scrollbar {
-  display: none;
 }
 
 .resrvation-record > *,
@@ -373,21 +408,27 @@ body {
 }
 
 .add-reserve-form .res-confirmation-msg {
-  position: relative;
-  left: 110%;
-  bottom: 150%;
-  font-size: 12px;
-  border: 2px solid #05386b;
-  width: 200px;
-  background: #5cdb9580;
-  color: #05386b;
+  position: fixed;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+  font-size: 20px;
+  border: none;
+  border-radius: none;
+  background: transparent;
+  color:transparent;
   font-weight: 800;
-  display: none;
-  transition: all 5s;
+  transform: translateY(100%);
+  transition-property: color, background, border, transform;
+  transition-duration: 1s;
+  z-index: 999;
 }
 
 .add-reserve-form .open {
-  display: block;
+  transform: translateY(0);
+  background: #5cdb95fa;
+  color: #05386b;
+  border: 2px solid white;
 }
 
 .resrvation-record > *:nth-child(odd),
@@ -410,7 +451,7 @@ body {
 
 .footer {
   width: 100%;
-  height: 100px;
+  padding: 30px;
   background-color: rgb(50, 50, 50);
   color: #e67e22;
   display: flex;
