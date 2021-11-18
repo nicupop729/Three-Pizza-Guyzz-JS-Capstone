@@ -53,9 +53,15 @@ const populateRes = (recipe, image, title) => {
   const reserveRecord = document.createElement('div');
   reserveRecord.style.display = 'flex';
   reserveRecord.classList.add('resrvation-record');
+  const reservationHeder = document.createElement('div');
+  reservationHeder.classList.add('reserve-header');
   const resTitle = document.createElement('h2');
+  const count = document.createElement('span');
+  count.classList.add('res-counter');
+  reservationHeder.appendChild(resTitle);
+  reservationHeder.appendChild(count);
   resTitle.textContent = 'Current Reservations';
-  reservations.appendChild(resTitle);
+  reservations.appendChild(reservationHeder);
   reservations.appendChild(reserveRecord);
 
   const addReserve = document.createElement('form');
@@ -76,12 +82,16 @@ const populateRes = (recipe, image, title) => {
   submit.textContent = 'Reserve a pizza';
   submit.type = 'submit';
   submit.classList.add('submit-btn');
+  const confirmationMss = document.createElement('p');
+  confirmationMss.classList.add('res-confirmation-msg');
+  confirmationMss.innerHTML = 'Thanks for your reservation!<br>You can come and pick up your pizza any time within your reservation period!<br>We will prepare it in 20 minutes!!';
 
   addReserve.appendChild(formTitle);
   addReserve.appendChild(inputName);
   addReserve.appendChild(inputStartDate);
   addReserve.appendChild(inputEndDate);
   addReserve.appendChild(submit);
+  addReserve.appendChild(confirmationMss);
 
   resContainer.appendChild(header);
   resContainer.appendChild(imageCont);
@@ -98,6 +108,16 @@ const getReservations = async (pizzaId) => {
   );
   const reservations = await dataComm.json();
   return reservations;
+};
+
+const reservationCounter = async (pizzaId) => {
+  const reservations = await getReservations(pizzaId);
+  return reservations.length;
+};
+
+const updateCounter = async (id, container) => {
+  const reservaions = await getReservations(id);
+  container.innerHTML = `( ${reservaions.length} )`;
 };
 
 const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
@@ -125,6 +145,7 @@ const displayReservation = async (pizzaId, container) => {
 const creatPopUp = async (e) => {
   const currentId = e.target.id;
   const data = await getResipe(currentId);
+  const resrLeng = await reservationCounter(currentId);
 
   document.querySelector('body').appendChild(populateRes(data.recipe, data.image, data.title));
   const form = document.querySelector('.add-reserve-form');
@@ -132,15 +153,27 @@ const creatPopUp = async (e) => {
   const intStartDate = document.querySelector('.intput-start');
   const intEndDate = document.querySelector('.intput-end');
   const recorsCont = document.querySelector('.resrvation-record');
+  const counter = document.querySelector('.res-counter');
+  const notification = document.querySelector('.res-confirmation-msg');
+
   displayReservation(currentId, recorsCont);
+  // eslint-disable-next-line no-unused-expressions
+  resrLeng ? counter.innerHTML = `( ${resrLeng} )` : counter.innerHTML = '( No reservations so far )';
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     submitReservation(currentId, intName.value, intStartDate.value, intEndDate.value);
     form.reset();
+    notification.classList.add('open');
+
+    setTimeout(() => {
+      notification.classList.remove('open');
+    }, 5000);
+
     setTimeout(() => {
       recorsCont.innerHTML = '';
       displayReservation(currentId, recorsCont);
+      updateCounter(currentId, counter);
     }, 2000);
   });
 };
