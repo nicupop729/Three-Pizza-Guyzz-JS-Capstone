@@ -180,10 +180,10 @@ body {
 
 .comments-list {
   list-style: none;
-}
-
-.comment {
-  margin-bottom: 7px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid white;
+  width: 500px;
 }
 
 .user-name {
@@ -322,7 +322,8 @@ body {
   border: 2px solid white;
 }
 
-.resrvation-record > * {
+.resrvation-record > *,
+.comments-list > * {
   padding: 10px;
   background: wheat;
 }
@@ -350,17 +351,20 @@ body {
   color: white;
 }
 
-.resrvation-record > *:nth-child(odd) {
+.resrvation-record > *:nth-child(odd),
+.comments-list > *:nth-child(odd) {
   background: #35280d;
   color: wheat;
 }
 
-.resrvation-record > *:first-child {
+.resrvation-record > *:first-child,
+.comments-list > *:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.resrvation-record > *:last-child {
+.resrvation-record > *:last-child,
+.comments-list > *:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
