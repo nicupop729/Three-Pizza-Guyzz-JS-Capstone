@@ -1,6 +1,9 @@
 const itemCounter = async (value) => {
   const counter = document.querySelector('.item-counter');
-  counter.innerHTML = `Total Pizza: (${value.length})`;
+  setTimeout(() => {
+    counter.innerHTML = `Total Pizza: (${value.length})`;
+  }, 4000);
+  
   return value.length;
 };
 

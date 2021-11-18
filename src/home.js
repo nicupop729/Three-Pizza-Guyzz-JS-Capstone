@@ -13,10 +13,7 @@ const showPizza = async (value) => {
   await getLikes().then((theLike) => theLike.forEach((datLike) => {
     likedData.push(datLike);
   }));
-
   value.forEach((dat) => {
-    const counter = document.querySelector('.item-counter');
-    counter.innerHTML = `Total Pizza: ${value.length}`;
     const divContainer = document.createElement('div');
     divContainer.className = 'pizza-container';
     const image = document.createElement('img');
