@@ -43,10 +43,10 @@ const displayIngredients = (ingredients, container) => {
   ingredients.forEach((ingr) => {
     const textHTML = `
 <li class="ingredient">${ingr.quantity === null ? '' : ingr.quantity} ${
-  ingr.unit === 'tsp' ? 'teaspoons' : ingr.unit
-} ${ingr.unit === 'tsp' || ingr.unit === 'cup' ? 'of' : ''} ${
-  ingr.description
-}</li>`;
+      ingr.unit === 'tsp' ? 'teaspoons' : ingr.unit
+    } ${ingr.unit === 'tsp' || ingr.unit === 'cup' ? 'of' : ''} ${
+      ingr.description
+    }</li>`;
     container.insertAdjacentHTML('beforeend', textHTML);
   });
 };
@@ -124,7 +124,7 @@ const buildPopUp = async (e) => {
       commentsList.innerHTML = '';
       getCommArray(pizzaId, commentsList);
       commCounterDisplay(commentCounterApi(pizzaId), comments);
-    }, 1000);
+    }, 500);
   });
 
   closePopUp(closeIcon, popUpDiv);
