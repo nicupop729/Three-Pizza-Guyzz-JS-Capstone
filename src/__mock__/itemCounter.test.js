@@ -1,4 +1,4 @@
-import itemCounter from './itemCounter.js';
+import itemCounter from './itemCounter';
 
 const data = [
   {
@@ -15,9 +15,6 @@ const data = [
   },
 ];
 
-test(, () => {
-  
-});
 
 describe('test add Items', () => {
   test('should output the total number of Item in the array..', () => {

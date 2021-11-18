@@ -1,6 +1,7 @@
-const itemCounter = async (value) => {
-  const counter = value.length
-  return counter;
+const itemCounter = (value) => {
+  const valueArr = [...value];
+  const valueLenght = valueArr.length;
+  return valueLenght;
 };
 
 export default itemCounter;
