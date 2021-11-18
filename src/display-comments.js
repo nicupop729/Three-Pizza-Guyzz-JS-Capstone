@@ -6,23 +6,26 @@ const domManip = (object) => {
 <div class="pop-up-comment-div">
 <div class="inner-pop-up-comment-div">
 <h3 class="recipe-title">${object.title}</h3>
-<div class="grid">
-<div class="pop-up-img-div">
+<div class="flex-container ">
+<div class="left-flex">
 <img
 class="pop-up-img"
 src="${object.image_url}"
 />
-</div>
 <p class="servings">Servings: ${object.servings}</p>
+<p class="cook-time">Cooking-time: ${object.cooking_time} min</p>
 <p class="recipe">See full recipe <a class="link" href="${object.source_url}" target="_blank" rel="noopener">here</a></p>
 <p class="inspiration">Inspired by: ${object.publisher}</p> 
+</div>
+<div>
 <p class="ingredients">Ingredients</p>
 <ul class="ingredients-list">
 </ul>
 </div>
+</div>
 <div class="comments-section">
 <h3 class="comments-title"></h3>
-<ul class="comments-list"> 
+<ul class="comments-list" style="display: none"> 
 </ul>
 <p class="leave-comm-text">Leave your comment</p>
 <form class="leave-comm">
@@ -74,6 +77,7 @@ const commentCounterApi = async (value) => {
 const getCommArray = async (pizzaId, container) => {
   const commArr = await getComm(pizzaId);
   if (commArr) {
+    container.style.display = 'flex';
     commArr.forEach((comm) => {
       const textHTML = `
 <li class="comment">${comm.creation_date}
