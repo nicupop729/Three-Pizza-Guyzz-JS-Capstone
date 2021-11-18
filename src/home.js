@@ -29,6 +29,7 @@ const showPizza = async (value) => {
 
     const namePub = document.createElement('span');
     namePub.innerHTML = dat.title;
+    namePub.classList.add('pizza-name');
 
     const namePizz = document.createElement('span');
     namePizz.textContent = 'No Likes';
