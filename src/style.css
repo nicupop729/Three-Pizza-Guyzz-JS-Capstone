@@ -126,14 +126,6 @@ body {
   border-radius: 12px;
 }
 
-.flex-container > *:last-child {
-  padding: 20px;
-  background: #fff5de;
-  border-radius: 20px;
-  box-shadow: 5px 10px #bb8000;
-  color: #35280d;
-}
-
 .servings,
 .cook-time {
   margin-top: 15px;
@@ -276,7 +268,7 @@ body {
   left: 0;
   right: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.70);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
 }
 
@@ -378,12 +370,6 @@ body {
   border-radius: 5px;
 }
 
-.resrvation-record > *,
-.comments-list > * {
-  padding: 10px;
-  background: wheat;
-}
-
 .add-reserve-form {
   justify-self: center;
   grid-area: form;
@@ -392,12 +378,6 @@ body {
   grid-template-rows: repeat(4, auto);
   grid-gap: 15px;
   width: 500px;
-}
-
-.add-reserve-form > * {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
 }
 
 .add-reserve-form .submit-btn {
@@ -414,9 +394,8 @@ body {
   top: 10%;
   font-size: 20px;
   border: none;
-  border-radius: none;
   background: transparent;
-  color:transparent;
+  color: transparent;
   font-weight: 800;
   transform: translateY(100%);
   transition-property: color, background, border, transform;
@@ -447,6 +426,14 @@ body {
 .comments-list > *:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.flex-container > *:last-child {
+  padding: 20px;
+  background: #fff5de;
+  border-radius: 20px;
+  box-shadow: 5px 10px #bb8000;
+  color: #35280d;
 }
 
 .footer {
