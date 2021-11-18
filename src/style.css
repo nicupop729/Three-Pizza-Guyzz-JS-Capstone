@@ -219,6 +219,10 @@ body {
   border-radius: 5px;
   border: 2px solid white;
   width: 500px;
+  max-height: 800px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .user-name {
@@ -412,9 +416,19 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  max-height: 800px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.resrvation-record > * {
+.resrvation-record::-webkit-scrollbar,
+.comments-list::-webkit-scrollbar {
+  display: none;
+}
+
+.resrvation-record > *,
+.comments-list > * {
   padding: 10px;
   background: wheat;
 }
