@@ -17,7 +17,7 @@ If internet users want to become customers, they can reserve a particular pizza 
 
 ## Live Demo
 
-[Live Demo - GitHub Pages](https://three-guyzz-restaurant.netlify.app/)
+[Live Demo](https://three-guyzz-restaurant.netlify.app/)
 
 ## Getting Started
 
