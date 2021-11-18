@@ -1,40 +1,40 @@
-// eslint-disable-next-line import/no-cycle
-import { getRecipe } from './hitApi';
+/* eslint-disable import/no-cycle */
+import { getRecipe, sendNewComm, getComm } from './hitApi';
 
 const domManip = (object) => {
   const htmlText = `
-  <div class="pop-up-comment-div">
-    <div class="inner-pop-up-comment-div">
-      <h3 class="recipe-title">${object.title}</h3>
-      <div class="grid">
-        <div class="pop-up-img-div">
-          <img
-            class="pop-up-img"
-            src="${object.image_url}"
-          />
-        </div>
-        <p class="servings">Servings: ${object.servings}</p>
-        <p class="recipe">See full recipe <a class="link" href="${object.source_url}" target="_blank" rel="noopener">here</a></p>
-        <p class="inspiration">Inspired by: ${object.publisher}</p>          
-        <p class="ingredients">Ingredients</p>
-        <ul class="ingredients-list">
-        </ul>
-      </div>
-      <div class="comments-section">
-        <h3 class="comments-title">Comments (45)</h3>
-        <ul class="comments-list">          
-        </ul>
-        <p class="leave-comm-text">Leave your comment</p>
-        <form class="leave-comm">
-          <input type="text" class="input-name" placeholder="Your name" required>
-          <textarea type="text" class="input-mess" placeholder="Your message" required></textarea>
-          <button class="pop-up-btn" type="submit">Send your message</button>
-        </form>
-      </div>
-    </div>
-    <span class="close-modul"><ion-icon name="close-outline"></ion-icon></span>
-  </div>
-    `;
+<div class="pop-up-comment-div">
+<div class="inner-pop-up-comment-div">
+<h3 class="recipe-title">${object.title}</h3>
+<div class="grid">
+<div class="pop-up-img-div">
+<img
+class="pop-up-img"
+src="${object.image_url}"
+/>
+</div>
+<p class="servings">Servings: ${object.servings}</p>
+<p class="recipe">See full recipe <a class="link" href="${object.source_url}" target="_blank" rel="noopener">here</a></p>
+<p class="inspiration">Inspired by: ${object.publisher}</p> 
+<p class="ingredients">Ingredients</p>
+<ul class="ingredients-list">
+</ul>
+</div>
+<div class="comments-section">
+<h3 class="comments-title"></h3>
+<ul class="comments-list"> 
+</ul>
+<p class="leave-comm-text">Leave your comment</p>
+<form class="leave-comm">
+<input type="text" class="input-name" placeholder="Your name" required>
+<textarea type="text" class="input-mess" placeholder="Your message" required></textarea>
+<button class="pop-up-btn" type="submit">Send your message</button>
+</form>
+</div>
+</div>
+<span class="close-modul"><ion-icon name="close-outline"></ion-icon></span>
+</div>
+`;
 
   document.body.insertAdjacentHTML('afterbegin', htmlText);
 };
@@ -42,7 +42,7 @@ const domManip = (object) => {
 const displayIngredients = (ingredients, container) => {
   ingredients.forEach((ingr) => {
     const textHTML = `
-    <li class="ingredient">${ingr.quantity === null ? '' : ingr.quantity} ${
+<li class="ingredient">${ingr.quantity === null ? '' : ingr.quantity} ${
   ingr.unit === 'tsp' ? 'teaspoons' : ingr.unit
 } ${ingr.unit === 'tsp' || ingr.unit === 'cup' ? 'of' : ''} ${
   ingr.description
@@ -57,35 +57,36 @@ const closePopUp = (x, popUp) => {
   });
 };
 
-const getComm = async (pizzaId) => {
-  const dataComm = await fetch(
-    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/comments?item_id=${pizzaId}`,
-  );
-  const comm = await dataComm.json();
-  return comm;
-};
-
-const sendNewComm = (pizzaId, name, comment) => {
-  fetch(
-    'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/comments',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        item_id: pizzaId,
-        username: name,
-        comment,
-      }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    },
-  );
-};
-
 const getCommArray = async (pizzaId, container) => {
   const commArr = await getComm(pizzaId);
-  commArr.forEach((comm) => {
-    const textHTML = `<li class="comment">${comm.creation_date} <span class="user-name">${comm.username}</span>: ${comm.comment}</li>`;
-    container.insertAdjacentHTML('afterbegin', textHTML);
-  });
+  if (commArr) {
+    commArr.forEach((comm) => {
+      const textHTML = `
+<li class="comment">${comm.creation_date}
+<span class="user-name">${comm.username}</span>: ${comm.comment}
+</li>
+`;
+      container.insertAdjacentHTML('afterbegin', textHTML);
+    });
+  }
+};
+
+/* eslint-disable consistent-return */
+const commentCounter = async (value) => {
+  const commNum = await getComm(value);
+  if (commNum) {
+    const newArr = [...commNum];
+    const arrLenght = newArr.length;
+    return arrLenght;
+  }
+};
+
+/* eslint-disable consistent-return */
+const commCounterDisplay = async (value, container) => {
+  const newValue = await value;
+  if (!newValue) container.textContent = 'No comments yet';
+  if (newValue === 1) container.textContent = '1 Comment';
+  if (newValue > 1) container.textContent = `Comments (${newValue})`;
 };
 
 const buildPopUp = async (e) => {
@@ -101,12 +102,15 @@ const buildPopUp = async (e) => {
   const inputName = document.querySelector('.input-name');
   const inputMess = document.querySelector('.input-mess');
   const commentsList = document.querySelector('.comments-list');
+  const comments = document.querySelector('.comments-title');
 
   popUpDiv.style.display = 'block';
 
   displayIngredients(apiResult.ingredients, ingredientsList);
 
   getCommArray(pizzaId, commentsList);
+
+  commCounterDisplay(commentCounter(pizzaId), comments);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -116,6 +120,7 @@ const buildPopUp = async (e) => {
     setTimeout(() => {
       commentsList.innerHTML = '';
       getCommArray(pizzaId, commentsList);
+      commCounterDisplay(commentCounter(pizzaId), comments);
     }, 2000);
   });
 
@@ -126,7 +131,6 @@ const displayPopUp = (btns) => {
   btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       buildPopUp(e);
-      console.log(e);
     });
   });
 };
