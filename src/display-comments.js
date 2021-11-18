@@ -57,6 +57,20 @@ const closePopUp = (x, popUp) => {
   });
 };
 
+const commentCounter = (arr) => {
+  const newArr = [...arr];
+  const arrLenght = newArr.length;
+  return arrLenght;
+};
+
+const commentCounterApi = async (value) => {
+  const commNum = await getComm(value);
+  if (commNum) {
+    return commentCounter(commNum);
+  }
+  return null;
+};
+
 const getCommArray = async (pizzaId, container) => {
   const commArr = await getComm(pizzaId);
   if (commArr) {
@@ -71,17 +85,6 @@ const getCommArray = async (pizzaId, container) => {
   }
 };
 
-/* eslint-disable consistent-return */
-const commentCounter = async (value) => {
-  const commNum = await getComm(value);
-  if (commNum) {
-    const newArr = [...commNum];
-    const arrLenght = newArr.length;
-    return arrLenght;
-  }
-};
-
-/* eslint-disable consistent-return */
 const commCounterDisplay = async (value, container) => {
   const newValue = await value;
   if (!newValue) container.textContent = 'No comments yet';
@@ -110,7 +113,7 @@ const buildPopUp = async (e) => {
 
   getCommArray(pizzaId, commentsList);
 
-  commCounterDisplay(commentCounter(pizzaId), comments);
+  commCounterDisplay(commentCounterApi(pizzaId), comments);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -120,8 +123,8 @@ const buildPopUp = async (e) => {
     setTimeout(() => {
       commentsList.innerHTML = '';
       getCommArray(pizzaId, commentsList);
-      commCounterDisplay(commentCounter(pizzaId), comments);
-    }, 2000);
+      commCounterDisplay(commentCounterApi(pizzaId), comments);
+    }, 1000);
   });
 
   closePopUp(closeIcon, popUpDiv);

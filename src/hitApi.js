@@ -21,7 +21,7 @@ export const getLikes = async () => {
   const likesData = await likes.json();
   return likesData;
 };
-// eslint-disable-next-line
+
 export const getComm = async (pizzaId) => {
   try {
     const dataComm = await fetch(
@@ -31,8 +31,7 @@ export const getComm = async (pizzaId) => {
     const comm = await dataComm.json();
     return comm;
   } catch (err) {
-    // eslint-disable-next-line
-    console.error(err);
+    return null;
   }
 };
 
