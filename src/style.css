@@ -69,13 +69,25 @@ body {
   border-radius: 5px;
   background: rgb(75, 75, 75);
   text-align: center;
+  transition: all 0.2s ease;
+  transition-property: color, background, box-shadow;
 }
 
 .pizza-container:hover {
-  box-shadow: -5px 10px #bb8000;
   color: #753803;
   background: rgb(150, 150, 150);
-  transition: box-shadow 0.2s;
+}
+
+.pizza-container:hover:nth-child(3n-2) {
+  box-shadow: -5px 10px #bb8000;
+}
+
+.pizza-container:hover:nth-child(3n) {
+  box-shadow: 5px 10px #bb8000;
+}
+
+.pizza-container:hover:nth-child(3n-1) {
+  box-shadow: 0 10px #bb8000;
 }
 
 .reservation-header button {
