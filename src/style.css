@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -41,6 +42,12 @@ body {
   justify-self: start;
 }
 
+.under-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 20px;
+}
+
 .display-pizza {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -49,16 +56,38 @@ body {
 }
 
 .pizza-container {
+  color: #e67e22;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid black;
-  padding: 5px;
+  padding: 5px 5px 20px 5px;
   margin-top: 15px;
   margin-left: 20px;
   margin-right: 20px;
+  border-radius: 5px;
+  background: rgb(75, 75, 75);
   text-align: center;
+}
+
+.pizza-container:hover {
+  box-shadow: -5px 10px #bb8000;
+  color: #753803;
+  background: rgb(150, 150, 150);
+  transition: box-shadow 0.2s;
+}
+
+.reservation-header button {
+  padding: 5px;
+}
+
+.pizza-container button:first-child {
+  margin-bottom: 20px;
+}
+
+.pizza-container button:last-child {
+  margin-bottom: 20px;
 }
 
 .pizza-container img {
@@ -69,11 +98,9 @@ body {
   height: 50%;
 }
 
-.pizza-container button {
-  width: 50%;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 3px;
+.pizza-name {
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .like-me {
@@ -215,7 +242,10 @@ body {
   height: 100px;
 }
 
-.pop-up-btn {
+.pop-up-btn,
+.submit-btn,
+.reservation-btns,
+.comment-btn {
   width: 200px;
   cursor: pointer;
   background-color: #e67e22;
@@ -227,7 +257,13 @@ body {
 }
 
 .pop-up-btn:hover,
-.pop-up-btn:active {
+.pop-up-btn:active,
+.submit-btn:hover,
+.submit-btn:active,
+.reservation-btns:hover,
+.reservation-btns:active,
+.comment-btn:hover,
+.comment-btn:active {
   background-color: #fff;
   color: #e67e22;
   transition: background-color 0.2s;
@@ -291,10 +327,6 @@ body {
   padding: 20px;
   display: flex;
   justify-content: end;
-}
-
-.reservation-header button {
-  padding: 5px;
 }
 
 .res-image-conatainer {
@@ -363,13 +395,6 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: none;
-}
-
-.add-reserve-form .submit-btn {
-  justify-self: start;
-  width: 200px;
-  background-color: #e67e22;
-  color: white;
 }
 
 .add-reserve-form .res-confirmation-msg {
