@@ -21,6 +21,32 @@ export const getLikes = async () => {
   const likesData = await likes.json();
   return likesData;
 };
+// eslint-disable-next-line
+export const getComm = async (pizzaId) => {
+  try {
+    const dataComm = await fetch(
+      `${InvolmentAppKey}comments?item_id=${pizzaId}`,
+    );
+    if (!dataComm.ok) throw new Error('No data to load');
+    const comm = await dataComm.json();
+    return comm;
+  } catch (err) {
+    // eslint-disable-next-line
+    console.error(err);
+  }
+};
+
+export const sendNewComm = (pizzaId, name, comment) => {
+  fetch(`${InvolmentAppKey}comments`, {
+    method: 'POST',
+    body: JSON.stringify({
+      item_id: pizzaId,
+      username: name,
+      comment,
+    }),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  });
+};
 
 export const getRecipe = async (id) => {
   const pizza = await fetch(`${receipeUrl}${id}?key=${apiKey}`);
