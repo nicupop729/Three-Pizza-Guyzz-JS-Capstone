@@ -7,7 +7,7 @@
     "test": "jest --watch",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "build": "webpack serve --open",
+    "build": "webpack",
     "dev": "webpack serve --open"
   },
   "repository": {
