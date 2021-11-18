@@ -442,3 +442,26 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.loading::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: solid 10px #ddd;
+  border-top-color: #6e91b9;
+  border-bottom-color: #9983e7;
+  border-radius: 50%;
+  animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(1turn);
+  }
+}
