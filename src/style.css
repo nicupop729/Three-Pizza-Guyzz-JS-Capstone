@@ -383,7 +383,7 @@ body {
 }
 
 .resrvation-record > *:nth-child(odd),
-.comments-list > *:nth-child(odd){
+.comments-list > *:nth-child(odd) {
   background: #35280d;
   color: wheat;
 }
