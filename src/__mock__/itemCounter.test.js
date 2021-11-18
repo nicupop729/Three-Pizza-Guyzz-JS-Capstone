@@ -15,7 +15,6 @@ const data = [
   },
 ];
 
-
 describe('test add Items', () => {
   test('should output the total number of Item in the array..', () => {
     expect(itemCounter(data)).toBe(3);

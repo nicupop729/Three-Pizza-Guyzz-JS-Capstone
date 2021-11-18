@@ -67,7 +67,6 @@ const showPizza = async (value) => {
         if (likedData[i].likes === 1) {
           namePizz.textContent = `${likedData[i].likes} Like`;
         }
-        
       }
     }
 

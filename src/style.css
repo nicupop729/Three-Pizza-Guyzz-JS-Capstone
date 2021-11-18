@@ -376,11 +376,3 @@ body {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-
-button {
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  font-weight: 900;
-  box-shadow: black 3px 3px;
-  border-radius: 15px;
-}
