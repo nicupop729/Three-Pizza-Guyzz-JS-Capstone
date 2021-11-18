@@ -190,3 +190,115 @@ body {
   border: 2px solid #ddd;
   border-radius: 5px;
 }
+
+.res-container {
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 20%;
+  right: 20%;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    'header header'
+    'image description'
+    'reservations reservations'
+    'form form';
+  background-color: bisque;
+  box-shadow: -5px 10px #bb8000;
+  border-radius: 5px;
+  padding: 20px;
+  grid-gap: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.res-container::-webkit-scrollbar {
+  display: none;
+}
+
+.reservation-header {
+  grid-area: header;
+  padding: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.reservation-header button {
+  padding: 5px;
+}
+
+.res-image-conatainer {
+  grid-area: image;
+  display: flex;
+  justify-content: center;
+}
+
+.pizza-image {
+  height: 400px;
+}
+
+.res-details {
+  grid-area: description;
+  padding: 0 20px;
+}
+
+.reservations {
+  grid-area: reservations;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resrvation-record {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+.resrvation-record > * {
+  padding: 10px;
+  background: wheat;
+}
+
+.add-reserve-form {
+  justify-self: center;
+  grid-area: form;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, auto);
+  grid-gap: 15px;
+  width: 500px;
+}
+
+.add-reserve-form > * {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.add-reserve-form .submit-btn {
+  justify-self: start;
+  width: 200px;
+  background-color: #e67e22;
+  color: white;
+}
+
+.resrvation-record > *:nth-child(odd) {
+  background: #35280d;
+  color: wheat;
+}
+
+.resrvation-record > *:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.resrvation-record > *:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

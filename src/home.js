@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import displayPopUp from './display-comments.js';
+import displayResPopUp from './reservation_feature/reserveation.js';
 
 const displayPizza = document.querySelector('.display-pizza');
 
@@ -36,8 +37,10 @@ const showPizza = (value) => {
   });
 
   const commentBtns = [...document.querySelectorAll('.comment-btn')];
+  const reservationBtns = [...document.querySelectorAll('.reservation-btns')];
 
   displayPopUp(commentBtns);
+  displayResPopUp(reservationBtns);
 };
 
 export default showPizza;
