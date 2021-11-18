@@ -18,7 +18,7 @@ const populateRes = (recipe, image, title) => {
   const header = document.createElement('header');
   header.classList.add('reservation-header');
   const closeBtn = document.createElement('button');
-  closeBtn.textContent = 'X';
+  closeBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
   closeBtn.id = 'reservation-close-btn';
   closeBtn.addEventListener('click', () => {
     document.querySelector('body').removeChild(resContainer);
@@ -41,7 +41,11 @@ const populateRes = (recipe, image, title) => {
 
   recipe.forEach((obj) => {
     const list = document.createElement('li');
-    list.innerHTML = `${obj.quantity === null ? ' ' : obj.quantity} ${obj.unit} ${obj.unit === 'tsp' || obj.unit === 'cup' ? 'of' : ' '} ${obj.description};`;
+    list.innerHTML = `${obj.quantity === null ? ' ' : obj.quantity} ${
+      obj.unit
+    } ${obj.unit === 'tsp' || obj.unit === 'cup' ? 'of' : ' '} ${
+      obj.description
+    };`;
     recipeCont.appendChild(list);
   });
 
@@ -121,7 +125,8 @@ const updateCounter = async (id, container) => {
 };
 
 const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
-  fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/reservations/',
+  fetch(
+    'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/reservations/',
     {
       method: 'POST',
       body: JSON.stringify({
@@ -131,7 +136,8 @@ const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
         date_end: dateEnd,
       }),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    });
+    },
+  );
 };
 
 const displayReservation = async (pizzaId, container) => {
@@ -147,7 +153,9 @@ const creatPopUp = async (e) => {
   const data = await getResipe(currentId);
   const resrLeng = await reservationCounter(currentId);
 
-  document.querySelector('body').appendChild(populateRes(data.recipe, data.image, data.title));
+  document
+    .querySelector('body')
+    .appendChild(populateRes(data.recipe, data.image, data.title));
   const form = document.querySelector('.add-reserve-form');
   const intName = document.querySelector('.intput-name');
   const intStartDate = document.querySelector('.intput-start');
@@ -162,7 +170,12 @@ const creatPopUp = async (e) => {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    submitReservation(currentId, intName.value, intStartDate.value, intEndDate.value);
+    submitReservation(
+      currentId,
+      intName.value,
+      intStartDate.value,
+      intEndDate.value,
+    );
     form.reset();
     notification.classList.add('open');
 

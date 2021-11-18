@@ -59,6 +59,8 @@ export const getRecipe = async (id) => {
   const { title } = data;
   // eslint-disable-next-line camelcase
   const { source_url } = data;
+  // eslint-disable-next-line camelcase
+  const { cooking_time } = data;
 
   return {
     publisher,
@@ -67,6 +69,7 @@ export const getRecipe = async (id) => {
     image_url,
     title,
     source_url,
+    cooking_time,
   };
 };
 

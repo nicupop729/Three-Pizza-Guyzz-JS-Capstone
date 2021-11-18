@@ -102,7 +102,7 @@ body {
   height: 100%;
   height: auto;
   margin: 0 auto auto auto;
-  padding-bottom: 70px;
+  padding: 50px;
   background-color: bisque;
   box-shadow: -5px 10px #bb8000;
   border-radius: 5px;
@@ -110,26 +110,23 @@ body {
 
 .recipe-title {
   margin: 50px;
-}
-
-.pop-up-img-div {
-  grid-area: right-top;
+  font-size: 30px;
 }
 
 .pop-up-img {
   width: auto;
+  max-width: 500px;
   height: 400px;
 }
 
-.servings {
-  grid-area: right-second;
+.servings,
+.cook-time {
   margin-top: 15px;
   font-size: 20px;
   padding-left: 5px;
 }
 
 .recipe {
-  grid-area: right-third;
   margin-top: 15px;
   font-size: 30px;
   padding-left: 5px;
@@ -140,28 +137,18 @@ body {
 }
 
 .ingredients {
-  grid-area: left-top;
   font-size: 20px;
   margin-bottom: 15px;
-}
-
-.ingredients-list {
-  grid-area: left-main;
 }
 
 .ingredient {
   margin-bottom: 7px;
 }
 
-.grid {
-  display: grid;
-  justify-content: space-between;
-  grid-template-areas:
-    'right-top right-top left-top left-top'
-    'right-top right-top left-main left-main'
-    'right-second right-second left-main left-main'
-    'right-third right-third left-main left-main';
-  column-gap: 50px;
+.flex-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }
 
 .link:link,
@@ -179,11 +166,13 @@ body {
 }
 
 .comments-list {
+  display: flex;
+  flex-direction: column;
   list-style: none;
-}
-
-.comment {
-  margin-bottom: 7px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid white;
+  width: 500px;
 }
 
 .user-name {
@@ -199,6 +188,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 500px;
 }
 
 .input-name,
@@ -235,7 +225,8 @@ body {
   transition: background-color 0.2s;
 }
 
-.close-modul {
+.close-modul,
+#reservation-close-btn {
   display: inline-block;
   position: absolute;
   top: 6%;
@@ -251,6 +242,11 @@ body {
   background-color: #ddd;
   border: 2px solid #ddd;
   border-radius: 5px;
+}
+
+#reservation-close-btn {
+  top: 3%;
+  right: 5%;
 }
 
 .res-container {
@@ -277,7 +273,8 @@ body {
   scrollbar-width: none;
 }
 
-.res-container::-webkit-scrollbar {
+.res-container::-webkit-scrollbar,
+.pop-up-comment-div::-webkit-scrollbar {
   display: none;
 }
 
@@ -338,7 +335,8 @@ body {
   display: none;
 }
 
-.resrvation-record > * {
+.resrvation-record > *,
+.comments-list > * {
   padding: 10px;
   background: wheat;
 }
@@ -384,17 +382,20 @@ body {
   display: block;
 }
 
-.resrvation-record > *:nth-child(odd) {
+.resrvation-record > *:nth-child(odd),
+.comments-list > *:nth-child(odd) {
   background: #35280d;
   color: wheat;
 }
 
-.resrvation-record > *:first-child {
+.resrvation-record > *:first-child,
+.comments-list > *:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.resrvation-record > *:last-child {
+.resrvation-record > *:last-child,
+.comments-list > *:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
