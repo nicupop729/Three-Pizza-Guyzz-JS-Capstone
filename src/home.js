@@ -4,14 +4,18 @@ import { getLikes } from './hitApi.js';
 import displayPopUp from './display-comments.js';
 import displayResPopUp from './reservation_feature/reserveation.js';
 
-const apiEndPoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
+const apiEndPoint =
+  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
 
 const displayPizza = document.querySelector('.display-pizza');
+
 const showPizza = async (value) => {
   const likedData = [];
-  await getLikes().then((theLike) => theLike.forEach((datLike) => {
-    likedData.push(datLike);
-  }));
+  await getLikes().then((theLike) =>
+    theLike.forEach((datLike) => {
+      likedData.push(datLike);
+    })
+  );
 
   value.forEach((dat) => {
     const counter = document.querySelector('.item-counter');
@@ -42,7 +46,7 @@ const showPizza = async (value) => {
     reservationBtn.classList.add('reservation-btns');
     reservationBtn.innerHTML = 'Reservation';
 
-    likes.addEventListener('click', async () => {
+    const clickLikes = async () => {
       await fetch(apiEndPoint, {
         method: 'POST',
         body: JSON.stringify({
@@ -52,8 +56,9 @@ const showPizza = async (value) => {
           'Content-Type': 'application/json; charset=utf-8',
         },
       });
-      window.location.reload();
-    });
+    };
+
+    likes.addEventListener('click', clickLikes);
 
     divContainer.appendChild(image);
     divContainer.appendChild(likes);
