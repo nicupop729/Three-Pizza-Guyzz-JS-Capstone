@@ -445,14 +445,14 @@ body {
 
 .loading {
   display: flex;
-  justify-content:center;
+  justify-content: center;
 }
 
 .loading::after {
   content: "";
   width: 50px;
   height: 50px;
-  background-color:transparent;
+  background-color: transparent;
   border: solid 10px #ddd;
   border-top-color: #6e91b9;
   border-bottom-color: #9983e7;
@@ -461,7 +461,7 @@ body {
 }
 
 @keyframes loading {
-  to{
+  to {
     transform: rotate(1turn);
   }
 }

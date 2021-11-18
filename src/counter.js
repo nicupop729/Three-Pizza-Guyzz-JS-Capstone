@@ -3,7 +3,7 @@ const itemCounter = async (value) => {
   setTimeout(() => {
     counter.innerHTML = `Total Pizza: (${value.length})`;
   }, 4000);
-  
+
   return value.length;
 };
 
