@@ -83,6 +83,12 @@ body {
   border-radius: 3px;
 }
 
+.like-me {
+  font-size: 28px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
 .pop-up-comment-div {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -171,6 +177,72 @@ body {
 .link:link,
 .link:visited {
   color: #e67e22;
+}
+
+.comments-section {
+  margin-top: 50px;
+}
+
+.comments-title {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.comments-list {
+  list-style: none;
+}
+
+.comment {
+  margin-bottom: 7px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.leave-comm-text {
+  font-size: 20px;
+  margin: 30px auto;
+}
+
+.leave-comm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-name,
+.input-mess {
+  padding-left: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.input-name {
+  height: 40px;
+}
+
+.input-mess {
+  padding-top: 20px;
+  height: 100px;
+}
+
+.pop-up-btn {
+  width: 200px;
+  cursor: pointer;
+  background-color: #e67e22;
+  color: white;
+  margin-top: 20px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+}
+
+.pop-up-btn:hover,
+.pop-up-btn:active {
+  background-color: #fff;
+  color: #e67e22;
+  transition: background-color 0.2s;
 }
 
 .close-modul {

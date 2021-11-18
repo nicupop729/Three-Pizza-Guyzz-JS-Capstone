@@ -1,4 +1,5 @@
 import './style.css';
-import getPizza from './hitApi.js';
+import { getPizza, getLikes } from './hitApi.js';
 
+getLikes();
 getPizza();
