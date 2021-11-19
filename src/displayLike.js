@@ -4,11 +4,9 @@ import { getLikes } from './hitApi';
 
 const showLiked = async (likedData, dat, namePizz) => {
   likedData = [];
-  await getLikes().then((theLike) =>
-    theLike.forEach((datLike) => {
-      likedData.push(datLike);
-    })
-  );
+  await getLikes().then((theLike) => theLike.forEach((datLike) => {
+    likedData.push(datLike);
+  }));
   likedData.forEach((lik) => {
     if (lik.item_id === dat.id) {
       if (lik.likes > 1) {

@@ -5,21 +5,15 @@ import displayPopUp from './display-comments.js';
 import displayResPopUp from './reservation_feature/reserveation.js';
 import showLiked from './displayLike.js';
 
-const apiEndPoint =
-  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
-
-
+const apiEndPoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
 
 const displayPizza = document.querySelector('.display-pizza');
 
-
 const showPizza = async (value) => {
   const likedData = [];
-  await getLikes().then((theLike) =>
-    theLike.forEach((datLike) => {
-      likedData.push(datLike);
-    })
-  );
+  await getLikes().then((theLike) => theLike.forEach((datLike) => {
+    likedData.push(datLike);
+  }));
   value.forEach((dat) => {
     const divContainer = document.createElement('div');
     divContainer.className = 'pizza-container';
@@ -37,7 +31,6 @@ const showPizza = async (value) => {
 
     const namePizz = document.createElement('span');
     namePizz.textContent = 'No Likes';
-
 
     const commentBtn = document.createElement('button');
     commentBtn.innerHTML = 'Comment';
@@ -70,9 +63,8 @@ const showPizza = async (value) => {
       }, 100);
     };
 
-
     likes.addEventListener('click', clickLikes);
-    
+
     divContainer.insertBefore(namePizz, namePub);
 
     divContainer.appendChild(commentBtn);
@@ -85,9 +77,5 @@ const showPizza = async (value) => {
   displayPopUp(commentBtns);
   displayResPopUp(reservationBtns);
 };
-
-
-
-
 
 export default showPizza;
