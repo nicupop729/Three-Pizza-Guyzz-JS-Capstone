@@ -58,9 +58,7 @@ const showPizza = async (value) => {
           'Content-Type': 'application/json; charset=utf-8',
         },
       });
-      setTimeout(() => {
-        showLiked(likedData, dat, namePizz);
-      }, 100);
+      showLiked(likedData, dat, namePizz);
     };
 
     likes.addEventListener('click', clickLikes);
