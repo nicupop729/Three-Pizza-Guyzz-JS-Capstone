@@ -613,4 +613,10 @@ body {
     vertical-align: top;
     cursor: pointer;
   }
+
+  .pizza-container:hover:nth-child(3n),
+  .pizza-container:hover:nth-child(3n-2),
+  .pizza-container:hover:nth-child(3n-1) {
+    box-shadow: 5px 10px #bb8000;
+  }
 }
