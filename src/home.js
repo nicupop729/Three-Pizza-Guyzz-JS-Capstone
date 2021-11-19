@@ -3,6 +3,7 @@ import { getLikes } from './hitApi.js';
 // eslint-disable-next-line import/no-cycle
 import displayPopUp from './display-comments.js';
 import displayResPopUp from './reservation_feature/reserveation.js';
+import showLiked from './displayLike.js';
 
 const apiEndPoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
 
@@ -41,7 +42,13 @@ const showPizza = async (value) => {
     reservationBtn.classList.add('reservation-btns');
     reservationBtn.innerHTML = 'Reservation';
 
-    likes.addEventListener('click', async () => {
+    divContainer.appendChild(image);
+    divContainer.appendChild(likes);
+    divContainer.appendChild(namePub);
+
+    showLiked(likedData, dat, namePizz);
+
+    const clickLikes = async () => {
       await fetch(apiEndPoint, {
         method: 'POST',
         body: JSON.stringify({
@@ -51,23 +58,12 @@ const showPizza = async (value) => {
           'Content-Type': 'application/json; charset=utf-8',
         },
       });
-      window.location.reload();
-    });
+      setTimeout(() => {
+        showLiked(likedData, dat, namePizz);
+      }, 100);
+    };
 
-    divContainer.appendChild(image);
-    divContainer.appendChild(likes);
-    divContainer.appendChild(namePub);
-
-    for (let i = 0; i < likedData.length; i += 1) {
-      if (likedData[i].item_id === dat.id) {
-        if (likedData[i].likes > 1) {
-          namePizz.textContent = `${likedData[i].likes} Likes`;
-        }
-        if (likedData[i].likes === 1) {
-          namePizz.textContent = `${likedData[i].likes} Like`;
-        }
-      }
-    }
+    likes.addEventListener('click', clickLikes);
 
     divContainer.insertBefore(namePizz, namePub);
 
@@ -78,7 +74,6 @@ const showPizza = async (value) => {
   });
   const commentBtns = [...document.querySelectorAll('.comment-btn')];
   const reservationBtns = [...document.querySelectorAll('.reservation-btns')];
-
   displayPopUp(commentBtns);
   displayResPopUp(reservationBtns);
 };
