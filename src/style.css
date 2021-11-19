@@ -21,13 +21,24 @@ body {
 
 .main-header {
   display: grid;
-  grid-template-columns: auto 1fr 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
-  grid-gap: 10px;
+  grid-gap: 50px;
   align-items: center;
-  justify-items: center;
   padding: 20px 50px;
   background: rgb(50, 50, 50);
+}
+
+.logo-parag {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  gap: 20px;
+}
+
+.header-parag {
+  justify-self: flex-end;
+  padding-right: 20px;
 }
 
 .main-header img {
@@ -45,7 +56,8 @@ body {
 .under-header {
   display: flex;
   justify-content: space-between;
-  margin: 5px 20px;
+  margin: 1% 1% 1% 5%;
+  gap: 50px;
 }
 
 .display-pizza {
@@ -108,6 +120,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 50%;
+  border-radius: 5px;
 }
 
 .pizza-name {
@@ -239,11 +252,6 @@ body {
   flex-direction: column;
   gap: 15px;
   width: 500px;
-}
-
-.item-counter {
-  margin-left: 5%;
-  margin-top: 1%;
 }
 
 .input-name,
@@ -521,7 +529,7 @@ body {
 }
 
 .loading::after {
-  content: "";
+  content: '';
   width: 50px;
   height: 50px;
   background-color: transparent;
@@ -535,5 +543,74 @@ body {
 @keyframes loading {
   to {
     transform: rotate(1turn);
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .wrapper {
+    width: 100vw;
+  }
+
+  .main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    padding-bottom: 40px;
+  }
+
+  .main-header .res-name {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+
+  .header-parag {
+    margin-bottom: 20px;
+  }
+
+  .header-parag > * {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .under-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5%;
+    gap: 20px;
+  }
+
+  .under-header > :last-child {
+    font-size: 30px;
+  }
+
+  .display-pizza {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 50px 10px;
+  }
+
+  .pizza-container button {
+    width: 70%;
+  }
+
+  .pizza-container img {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50%;
+    border-radius: 5px;
+  }
+
+  .pizza-name {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .like-me {
+    font-size: 25px;
+    vertical-align: top;
+    cursor: pointer;
   }
 }
