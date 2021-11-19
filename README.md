@@ -40,7 +40,7 @@ or open terminal of path you want to install project and run this command <br>
 
 Run in your terminal the following commands:
 
-**`$ cd JavaScript-Capstone/`**<br>
+**`$ cd Three-Pizza-Guyzz-JS-Capstone/`**<br>
 **`$ npm install`**<br>
 **`$ npm run build`**<br>
 **`$ npm start`**
@@ -77,8 +77,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-This is a project done during Capstone for JavaScript Module at **[Microverse](https://www.microverse.org/)**, a remote web-developer school, using their support and frameworks provided.<br>
-For this website, we used the [forkify API](https://forkify-api.herokuapp.com/v2), provided by **[Jonas Schmedtmann](https://codingheroes.io/)**
+This is a project done during Capstone at the end of JavaScript Module at **[Microverse](https://www.microverse.org/)**, a remote web-developer school, using their support and frameworks provided.<br>
+For this website, we used the [forkify API](https://forkify-api.herokuapp.com/v2), provided by **[Jonas Schmedtmann](https://codingheroes.io/)**.
 
 ## 📝 License
 
