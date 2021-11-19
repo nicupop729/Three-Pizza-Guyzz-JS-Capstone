@@ -128,7 +128,7 @@ const buildPopUp = async (e) => {
       commentsList.innerHTML = '';
       getCommArray(pizzaId, commentsList);
       commCounterDisplay(commentCounterApi(pizzaId), comments);
-    }, 500);
+    }, 1000);
   });
 
   closePopUp(closeIcon, popUpDiv);
