@@ -594,15 +594,6 @@ body {
     width: 70%;
   }
 
-  .pizza-container img {
-    width: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 50%;
-    border-radius: 5px;
-  }
-
   .pizza-name {
     font-weight: bold;
     font-size: 25px;
@@ -610,8 +601,6 @@ body {
 
   .like-me {
     font-size: 25px;
-    vertical-align: top;
-    cursor: pointer;
   }
 
   .pizza-container:hover:nth-child(3n),
