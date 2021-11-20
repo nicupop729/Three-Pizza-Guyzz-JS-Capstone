@@ -44,9 +44,9 @@ const populateRes = (recipe, image, title) => {
 
   recipe.forEach((obj) => {
     const list = document.createElement('li');
-    list.innerHTML = `${obj.quantity === null ? ' ' : obj.quantity} ${
+    list.innerHTML = `${obj.quantity === null ? '' : obj.quantity} ${
       obj.unit
-    } ${obj.unit === 'tsp' || obj.unit === 'cup' ? 'of' : ' '} ${
+    } ${obj.unit === 'tsp' || obj.unit === 'cup' ? 'of' : ''} ${
       obj.description
     };`;
     recipeCont.appendChild(list);
@@ -58,16 +58,13 @@ const populateRes = (recipe, image, title) => {
   const reservations = document.createElement('div');
   reservations.classList.add('reservations');
   const reserveRecord = document.createElement('div');
-  reserveRecord.style.display = 'flex';
+  reserveRecord.style.display = 'none';
   reserveRecord.classList.add('resrvation-record');
   const reservationHeder = document.createElement('div');
   reservationHeder.classList.add('reserve-header');
   const resTitle = document.createElement('h2');
-  const count = document.createElement('span');
-  count.classList.add('res-counter');
   reservationHeder.appendChild(resTitle);
-  reservationHeder.appendChild(count);
-  resTitle.textContent = 'Current Reservations';
+  resTitle.classList.add('res-title');
   reservations.appendChild(reservationHeder);
   reservations.appendChild(reserveRecord);
 
@@ -123,9 +120,24 @@ const reservationCounter = async (pizzaId) => {
   return reservations.length;
 };
 
+const displayResCounter = (resNum, container) => {
+  if (!resNum) container.textContent = 'No reservations yet';
+  if (resNum === 1) container.textContent = '1 Reservation';
+  if (resNum > 1) {
+    container.textContent = `Reservations (${resNum})`;
+  }
+};
+
 const updateCounter = async (id, container) => {
   const reservaions = await getReservations(id);
-  container.innerHTML = `( ${reservaions.length} )`;
+  const reservLenght = reservaions.length;
+  const displayNewRes = () => {
+    if (reservLenght === 1) container.textContent = '1 Reservation';
+    if (reservLenght > 1) {
+      container.textContent = `Reservations (${reservLenght})`;
+    }
+  };
+  displayNewRes();
 };
 
 const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
@@ -146,10 +158,14 @@ const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
 
 const displayReservation = async (pizzaId, container) => {
   const reservationArr = await getReservations(pizzaId);
-  reservationArr.forEach((element) => {
-    const htmlText = `<div class="res-records"> Reserved from <b>${element.date_start}</b> until <b>${element.date_end}</b> by ${element.username}</div>`;
-    container.insertAdjacentHTML('afterbegin', htmlText);
-  });
+  if (reservationArr) {
+    container.innerHTML = '';
+    container.style.display = 'flex';
+    reservationArr.forEach((element) => {
+      const htmlText = `<div class="res-records"> Reserved from <b>${element.date_start}</b> until <b>${element.date_end}</b> by ${element.username}</div>`;
+      container.insertAdjacentHTML('afterbegin', htmlText);
+    });
+  }
 };
 
 const creatPopUp = async (e) => {
@@ -165,12 +181,12 @@ const creatPopUp = async (e) => {
   const intStartDate = document.querySelector('.intput-start');
   const intEndDate = document.querySelector('.intput-end');
   const recorsCont = document.querySelector('.resrvation-record');
-  const counter = document.querySelector('.res-counter');
   const notification = document.querySelector('.res-confirmation-msg');
+  const resTitle = document.querySelector('.res-title');
 
   displayReservation(currentId, recorsCont);
-  // eslint-disable-next-line no-unused-expressions
-  resrLeng ? counter.innerHTML = `( ${resrLeng} )` : counter.innerHTML = '( No reservations at the moment )';
+
+  displayResCounter(resrLeng, resTitle);
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -185,13 +201,12 @@ const creatPopUp = async (e) => {
 
     setTimeout(() => {
       notification.classList.remove('open');
-    }, 5000);
+    }, 10000);
 
     setTimeout(() => {
-      recorsCont.innerHTML = '';
       displayReservation(currentId, recorsCont);
-      updateCounter(currentId, counter);
-    }, 2000);
+      updateCounter(currentId, resTitle);
+    }, 1000);
   });
 };
 

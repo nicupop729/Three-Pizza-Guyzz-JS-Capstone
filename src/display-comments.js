@@ -54,10 +54,20 @@ const displayIngredients = (ingredients, container) => {
   });
 };
 
-const closePopUp = (x, popUp) => {
-  x.addEventListener('click', () => {
-    popUp.style.display = 'none';
-  });
+const getCommArray = async (pizzaId, container) => {
+  const commArr = await getComm(pizzaId);
+  if (commArr) {
+    container.innerHTML = '';
+    container.style.display = 'flex';
+    commArr.forEach((comm) => {
+      const textHTML = `
+<li class="comment">${comm.creation_date}
+<span class="user-name">${comm.username}</span>: ${comm.comment}
+</li>
+`;
+      container.insertAdjacentHTML('afterbegin', textHTML);
+    });
+  }
 };
 
 const commentCounter = (arr) => {
@@ -74,26 +84,17 @@ const commentCounterApi = async (value) => {
   return null;
 };
 
-const getCommArray = async (pizzaId, container) => {
-  const commArr = await getComm(pizzaId);
-  if (commArr) {
-    container.style.display = 'flex';
-    commArr.forEach((comm) => {
-      const textHTML = `
-<li class="comment">${comm.creation_date}
-<span class="user-name">${comm.username}</span>: ${comm.comment}
-</li>
-`;
-      container.insertAdjacentHTML('afterbegin', textHTML);
-    });
-  }
-};
-
 const commCounterDisplay = async (value, container) => {
   const newValue = await value;
   if (!newValue) container.textContent = 'No comments yet';
   if (newValue === 1) container.textContent = '1 Comment';
   if (newValue > 1) container.textContent = `Comments (${newValue})`;
+};
+
+const closePopUp = (x, popUp) => {
+  x.addEventListener('click', () => {
+    popUp.style.display = 'none';
+  });
 };
 
 const buildPopUp = async (e) => {
@@ -125,7 +126,6 @@ const buildPopUp = async (e) => {
     inputName.value = '';
     inputMess.value = '';
     setTimeout(() => {
-      commentsList.innerHTML = '';
       getCommArray(pizzaId, commentsList);
       commCounterDisplay(commentCounterApi(pizzaId), comments);
     }, 1000);

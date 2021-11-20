@@ -232,7 +232,7 @@ body {
   border-radius: 5px;
   border: 2px solid white;
   width: 500px;
-  max-height: 800px;
+  max-height: 400px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -350,7 +350,7 @@ body {
   background-color: bisque;
   box-shadow: -5px 10px #bb8000;
   border-radius: 5px;
-  padding: 20px 0 20px 20px;
+  padding: 50px;
   grid-gap: 20px;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -392,8 +392,7 @@ body {
   grid-template-rows: auto 1fr;
   grid-gap: 30px;
   background: #fff5de;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-radius: 20px;
   box-shadow: 5px 10px #bb8000;
   color: #35280d;
 }
@@ -424,10 +423,11 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  max-height: 800px;
+  max-height: 400px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  border: 1px solid white;
 }
 
 .resrvation-record::-webkit-scrollbar,
