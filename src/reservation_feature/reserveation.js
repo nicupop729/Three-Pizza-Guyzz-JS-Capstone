@@ -12,6 +12,16 @@ const getResipe = async (id) => {
   return { recipe, image, title };
 };
 
+const n = new Date();
+const y = n.getFullYear();
+let m = n.getMonth() + 1;
+let d = n.getDate();
+
+if (m < 10) m = `0${m.toString()}`;
+else if (d < 10) d = `0${d.toString()}`;
+
+const minDate = `${y}-${m}-${d}`;
+
 const populateRes = (recipe, image, title) => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('res-wrapper');
@@ -80,9 +90,11 @@ const populateRes = (recipe, image, title) => {
   const inputStartDate = document.createElement('input');
   inputStartDate.type = 'date';
   inputStartDate.classList.add('intput-start');
+  inputStartDate.setAttribute('min', minDate);
   const inputEndDate = document.createElement('input');
   inputEndDate.type = 'date';
   inputEndDate.classList.add('intput-end');
+  inputEndDate.setAttribute('min', minDate);
   const submit = document.createElement('button');
   submit.textContent = 'Reserve a pizza';
   submit.type = 'submit';
