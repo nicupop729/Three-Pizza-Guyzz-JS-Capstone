@@ -1,16 +1,11 @@
-const resApi = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
-const resKey = '?key=c9510895-3e98-4f84-a4ff-c56d29bdf5e0';
+// eslint-disable-next-line import/no-cycle
+import { getResipe } from '../api-calls/forkifyAPI';
 
-const getResipe = async (id) => {
-  const response = await fetch(`${resApi}${id}${resKey}`);
-  const cloud = await response.json();
-  const recipe = cloud.data.recipe.ingredients;
-  const image = cloud.data.recipe.image_url;
-  // eslint-disable-next-line prefer-destructuring
-  const title = cloud.data.recipe.title;
-
-  return { recipe, image, title };
-};
+// eslint-disable-next-line import/no-cycle
+import {
+  getReservations,
+  submitReservation,
+} from '../api-calls/involvementAPI';
 
 const n = new Date();
 const y = n.getFullYear();
@@ -21,6 +16,10 @@ if (m < 10) m = `0${m.toString()}`;
 else if (d < 10) d = `0${d.toString()}`;
 
 const minDate = `${y}-${m}-${d}`;
+const updateDate = (startDate, endDate) => {
+  const firstdate = startDate.value;
+  endDate.min = firstdate;
+};
 
 const populateRes = (recipe, image, title) => {
   const wrapper = document.createElement('div');
@@ -29,7 +28,7 @@ const populateRes = (recipe, image, title) => {
   resContainer.classList.add('res-container');
   const header = document.createElement('header');
   header.classList.add('reservation-header');
-  const closeBtn = document.createElement('button');
+  const closeBtn = document.createElement('span');
   closeBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
   closeBtn.id = 'reservation-close-btn';
   closeBtn.addEventListener('click', () => {
@@ -94,7 +93,6 @@ const populateRes = (recipe, image, title) => {
   const inputEndDate = document.createElement('input');
   inputEndDate.type = 'date';
   inputEndDate.classList.add('intput-end');
-  inputEndDate.setAttribute('min', minDate);
   const submit = document.createElement('button');
   submit.textContent = 'Reserve a pizza';
   submit.type = 'submit';
@@ -117,14 +115,6 @@ const populateRes = (recipe, image, title) => {
   document.querySelector('body').appendChild(wrapper);
 
   return resContainer;
-};
-
-const getReservations = async (pizzaId) => {
-  const dataComm = await fetch(
-    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/reservations?item_id=${pizzaId}`,
-  );
-  const reservations = await dataComm.json();
-  return reservations;
 };
 
 const reservationCounter = async (pizzaId) => {
@@ -159,55 +149,15 @@ const renderMsg = (container, status, msg) => {
   setTimeout(() => {
     container.classList.toggle(status);
     container.style.display = 'none';
-  }, 8000);
+  }, 5000);
 };
 
-const renderSucces = (container, status, msg) => {
+export const renderSucces = (container, status, msg) => {
   renderMsg(container, status, msg);
 };
 
-const renderError = (container, status, msg) => {
+export const renderError = (container, status, msg) => {
   renderMsg(container, status, msg);
-};
-
-const submitReservation = async (
-  pizzaId,
-  name,
-  dateStart,
-  dateEnd,
-  container,
-) => {
-  fetch(
-    'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/reservations/',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        item_id: pizzaId,
-        username: name,
-        date_start: dateStart,
-        date_end: dateEnd,
-      }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    },
-  )
-    .then((data) => {
-      if (data.ok) {
-        renderSucces(
-          container,
-          'open',
-          'Thanks for your reservation!<br>You can come and pick up your pizza any time within your reservation period!<br>We will prepare it in 20 minutes!!',
-        );
-      } else {
-        throw new Error('Please provide valid name and date');
-      }
-    })
-    .catch((err) => {
-      renderError(
-        container,
-        'error',
-        `Something went wrong: ${err.message}. Try again`,
-      );
-    });
 };
 
 const displayReservation = async (pizzaId, container) => {
@@ -242,9 +192,12 @@ const creatPopUp = async (e) => {
 
   displayResCounter(resrLeng, resTitle);
 
+  intStartDate.addEventListener('change', () => {
+    updateDate(intStartDate, intEndDate);
+  });
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-
     submitReservation(
       currentId,
       intName.value,

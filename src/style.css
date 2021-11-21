@@ -307,18 +307,18 @@ body {
   height: 35px;
   width: 35px;
   text-align: center;
-  z-index: 2;
   cursor: pointer;
   padding: 5px;
   color: #67798e;
   background-color: #ddd;
   border: 2px solid #ddd;
   border-radius: 5px;
+  z-index: 100;
 }
 
 #reservation-close-btn {
-  top: 3%;
-  right: 5%;
+  top: 2%;
+  right: 2%;
 }
 
 .res-wrapper {
@@ -477,7 +477,7 @@ body {
   transform: translateY(100%);
   transition-property: color, background, border, transform;
   transition-duration: 1s;
-  z-index: 999;
+  z-index: 99;
 }
 
 .add-reserve-form .open {

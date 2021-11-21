@@ -1,6 +1,5 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable import/extensions */
-import { getLikes } from './hitApi';
+// eslint-disable-next-line import/no-cycle
+import { getLikes } from '../api-calls/involvementAPI';
 
 const showLiked = async (likedData, dat, namePizz) => {
   likedData = [];

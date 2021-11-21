@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
-import { getRecipe, sendNewComm, getComm } from './hitApi';
+import { getRecipe } from '../api-calls/forkifyAPI';
+import { sendNewComm, getComm } from '../api-calls/involvementAPI';
 
 const domManip = (object) => {
   const htmlText = `
