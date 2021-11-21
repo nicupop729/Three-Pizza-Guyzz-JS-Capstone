@@ -487,6 +487,13 @@ body {
   border: 2px solid white;
 }
 
+.add-reserve-form .error {
+  transform: translateY(0);
+  background: red;
+  color: #05386b;
+  border: 2px solid white;
+}
+
 .resrvation-record > *:nth-child(odd),
 .comments-list > *:nth-child(odd) {
   background: #35280d;

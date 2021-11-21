@@ -75,6 +75,7 @@ const populateRes = (recipe, image, title) => {
   const inputName = document.createElement('input');
   inputName.type = 'text';
   inputName.placeholder = 'Enter Your Name';
+  inputName.required = true;
   inputName.classList.add('intput-name');
   const inputStartDate = document.createElement('input');
   inputStartDate.type = 'date';
@@ -88,7 +89,6 @@ const populateRes = (recipe, image, title) => {
   submit.classList.add('submit-btn');
   const confirmationMss = document.createElement('p');
   confirmationMss.classList.add('res-confirmation-msg');
-  confirmationMss.innerHTML = 'Thanks for your reservation!<br>You can come and pick up your pizza any time within your reservation period!<br>We will prepare it in 20 minutes!!';
 
   addReserve.appendChild(formTitle);
   addReserve.appendChild(inputName);
@@ -140,7 +140,31 @@ const updateCounter = async (id, container) => {
   displayNewRes();
 };
 
-const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
+const renderMsg = (container, status, msg) => {
+  container.classList.toggle(status);
+  container.innerHTML = msg;
+  container.style.display = 'block';
+  setTimeout(() => {
+    container.classList.toggle(status);
+    container.style.display = 'none';
+  }, 8000);
+};
+
+const renderSucces = (container, status, msg) => {
+  renderMsg(container, status, msg);
+};
+
+const renderError = (container, status, msg) => {
+  renderMsg(container, status, msg);
+};
+
+const submitReservation = async (
+  pizzaId,
+  name,
+  dateStart,
+  dateEnd,
+  container,
+) => {
   fetch(
     'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/reservations/',
     {
@@ -153,7 +177,25 @@ const submitReservation = async (pizzaId, name, dateStart, dateEnd) => {
       }),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     },
-  );
+  )
+    .then((data) => {
+      if (data.ok) {
+        renderSucces(
+          container,
+          'open',
+          'Thanks for your reservation!<br>You can come and pick up your pizza any time within your reservation period!<br>We will prepare it in 20 minutes!!',
+        );
+      } else {
+        throw new Error('Please provide valid name and date');
+      }
+    })
+    .catch((err) => {
+      renderError(
+        container,
+        'error',
+        `Something went wrong: ${err.message}. Try again`,
+      );
+    });
 };
 
 const displayReservation = async (pizzaId, container) => {
@@ -190,18 +232,16 @@ const creatPopUp = async (e) => {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+
     submitReservation(
       currentId,
       intName.value,
       intStartDate.value,
       intEndDate.value,
+      notification,
     );
-    form.reset();
-    notification.classList.add('open');
 
-    setTimeout(() => {
-      notification.classList.remove('open');
-    }, 10000);
+    form.reset();
 
     setTimeout(() => {
       displayReservation(currentId, recorsCont);
