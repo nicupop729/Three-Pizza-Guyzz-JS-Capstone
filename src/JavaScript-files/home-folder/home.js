@@ -20,8 +20,8 @@ const showPizza = async (value) => {
     image.src = dat.image_url;
 
     const likes = document.createElement('span');
-    likes.innerHTML = '\u2661';
-    likes.className = 'like-me';
+    likes.innerHTML = '<ion-icon name="heart-circle-outline"></ion-icon>';
+    likes.classList.add('like-me');
 
     const namePub = document.createElement('span');
     namePub.innerHTML = dat.title;
