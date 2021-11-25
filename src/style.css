@@ -170,9 +170,9 @@ body {
 }
 
 .pop-up-img {
-  width: auto;
+  width: 100%;
   max-width: 500px;
-  height: 400px;
+  max-height: 400px;
   border: 1px solid white;
   box-shadow: 5px 10px #bb8000;
   border-radius: 12px;
@@ -231,7 +231,7 @@ body {
   background: white;
   border-radius: 5px;
   border: 2px solid white;
-  width: 500px;
+  max-width: 500px;
   max-height: 800px;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -251,7 +251,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 500px;
+  max-width: 500px;
 }
 
 .input-name,
@@ -377,8 +377,8 @@ body {
 
 .pizza-image {
   max-width: 500px;
-  width: auto;
-  height: 400px;
+  width: 100%;
+  max-height: 400px;
   border: 1px solid white;
   box-shadow: 5px 10px #bb8000;
   border-radius: 12px;
@@ -448,7 +448,8 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, auto);
   grid-gap: 15px;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
 }
 
 .add-reserve-form .submit-btn {
@@ -547,6 +548,54 @@ body {
 }
 
 @media only screen and (max-width: 740px) {
+  .res-container {
+    top: 3%;
+    bottom: 3%;
+    left: 3%;
+    right: 3%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto auto;
+    grid-template-areas:
+      'header header'
+      'image image'
+      'description description'
+      'reservations reservations'
+      'form form';
+    padding-right: 20px;
+  }
+
+  .res-details {
+    border-radius: 20px;
+  }
+
+  .reserve-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .inner-pop-up-comment-div {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    align-items: stretch;
+    height: auto;
+    width: 90%;
+    padding: 20px;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recipe-title {
+    text-align: center;
+  }
+
+  .close-modul {
+    right: 10%;
+  }
+
   .wrapper {
     width: 100vw;
   }
