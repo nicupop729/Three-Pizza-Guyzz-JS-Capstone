@@ -1,11 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { getLikes } from './hitApi.js';
+import { clickLikes, getLikes } from '../api-calls/involvementAPI';
 // eslint-disable-next-line import/no-cycle
-import displayPopUp from './display-comments.js';
-import displayResPopUp from './reservation_feature/reserveation.js';
+import displayPopUp from '../comms-folder/display-comments.js';
+import displayResPopUp from '../reservations-folder/reserveation.js';
 import showLiked from './displayLike.js';
-
-const apiEndPoint = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/likes';
 
 const displayPizza = document.querySelector('.display-pizza');
 
@@ -22,8 +20,8 @@ const showPizza = async (value) => {
     image.src = dat.image_url;
 
     const likes = document.createElement('span');
-    likes.innerHTML = '\u2661';
-    likes.className = 'like-me';
+    likes.innerHTML = '<ion-icon name="heart-circle-outline"></ion-icon>';
+    likes.classList.add('like-me');
 
     const namePub = document.createElement('span');
     namePub.innerHTML = dat.title;
@@ -48,22 +46,13 @@ const showPizza = async (value) => {
 
     showLiked(likedData, dat, namePizz);
 
-    const clickLikes = async () => {
-      await fetch(apiEndPoint, {
-        method: 'POST',
-        body: JSON.stringify({
-          item_id: dat.id,
-        }),
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-      });
+    likes.addEventListener('click', (e) => {
+      e.preventDefault();
+      clickLikes(dat);
       setTimeout(() => {
         showLiked(likedData, dat, namePizz);
-      }, 100);
-    };
-
-    likes.addEventListener('click', clickLikes);
+      }, 1000);
+    });
 
     divContainer.insertBefore(namePizz, namePub);
 

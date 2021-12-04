@@ -129,7 +129,8 @@ body {
 }
 
 .like-me {
-  font-size: 28px;
+  font-size: 40px;
+  padding-top: 20px;
   vertical-align: top;
   cursor: pointer;
 }
@@ -231,8 +232,8 @@ body {
   background: white;
   border-radius: 5px;
   border: 2px solid white;
-  max-width: 500px;
-  max-height: 800px;
+  width: 500px;
+  max-height: 400px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -307,18 +308,18 @@ body {
   height: 35px;
   width: 35px;
   text-align: center;
-  z-index: 2;
   cursor: pointer;
   padding: 5px;
   color: #67798e;
   background-color: #ddd;
   border: 2px solid #ddd;
   border-radius: 5px;
+  z-index: 100;
 }
 
 #reservation-close-btn {
-  top: 3%;
-  right: 5%;
+  top: 2%;
+  right: 2%;
 }
 
 .res-wrapper {
@@ -350,7 +351,7 @@ body {
   background-color: bisque;
   box-shadow: -5px 10px #bb8000;
   border-radius: 5px;
-  padding: 20px 0 20px 20px;
+  padding: 50px;
   grid-gap: 20px;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -392,8 +393,7 @@ body {
   grid-template-rows: auto 1fr;
   grid-gap: 30px;
   background: #fff5de;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-radius: 20px;
   box-shadow: 5px 10px #bb8000;
   color: #35280d;
 }
@@ -424,10 +424,11 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  max-height: 800px;
+  max-height: 400px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  border: 1px solid white;
 }
 
 .resrvation-record::-webkit-scrollbar,
@@ -478,12 +479,19 @@ body {
   transform: translateY(100%);
   transition-property: color, background, border, transform;
   transition-duration: 1s;
-  z-index: 999;
+  z-index: 99;
 }
 
 .add-reserve-form .open {
   transform: translateY(0);
   background: #5cdb95fa;
+  color: #05386b;
+  border: 2px solid white;
+}
+
+.add-reserve-form .error {
+  transform: translateY(0);
+  background: red;
   color: #05386b;
   border: 2px solid white;
 }
@@ -583,6 +591,11 @@ body {
     padding: 20px;
   }
 
+  .comments-list {
+    width: 100%;
+    max-height: 400px;
+  }
+
   .flex-container {
     display: flex;
     flex-direction: column;
@@ -645,10 +658,6 @@ body {
 
   .pizza-name {
     font-weight: bold;
-    font-size: 25px;
-  }
-
-  .like-me {
     font-size: 25px;
   }
 

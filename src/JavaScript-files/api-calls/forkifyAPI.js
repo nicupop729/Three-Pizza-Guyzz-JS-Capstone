@@ -1,10 +1,9 @@
 /* eslint-disable import/no-cycle */
-import showPizza from './home.js';
-import itemCounter from './counter.js';
+import showPizza from '../home-folder/home.js';
+import itemCounter from '../home-folder/counter.js';
 
 const apiKey = '846893fa-87f6-438c-b699-78f4d8b5b5a0';
 const url = 'https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=';
-const InvolmentAppKey = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8FcrK9POw5EbfAJUs4DD/';
 
 const receipeUrl = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 
@@ -14,37 +13,6 @@ export const getPizza = async () => {
   const data = pizzaData.data.recipes.slice(1, pizzaData.lenght);
   showPizza(data);
   itemCounter(data);
-};
-
-export const getLikes = async () => {
-  const likes = await fetch(`${InvolmentAppKey}likes`);
-  const likesData = await likes.json();
-  return likesData;
-};
-
-export const getComm = async (pizzaId) => {
-  try {
-    const dataComm = await fetch(
-      `${InvolmentAppKey}comments?item_id=${pizzaId}`,
-    );
-    if (!dataComm.ok) throw new Error('No data to load');
-    const comm = await dataComm.json();
-    return comm;
-  } catch (err) {
-    return null;
-  }
-};
-
-export const sendNewComm = (pizzaId, name, comment) => {
-  fetch(`${InvolmentAppKey}comments`, {
-    method: 'POST',
-    body: JSON.stringify({
-      item_id: pizzaId,
-      username: name,
-      comment,
-    }),
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-  });
 };
 
 export const getRecipe = async (id) => {
@@ -73,4 +41,13 @@ export const getRecipe = async (id) => {
   };
 };
 
-getLikes();
+export const getResipe = async (id) => {
+  const response = await fetch(`${receipeUrl}${id}?key=${apiKey}`);
+  const cloud = await response.json();
+  const recipe = cloud.data.recipe.ingredients;
+  const image = cloud.data.recipe.image_url;
+  // eslint-disable-next-line prefer-destructuring
+  const title = cloud.data.recipe.title;
+
+  return { recipe, image, title };
+};
